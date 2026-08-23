@@ -1,16 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Corkboard — Nextdoor Post Checker</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corkboard — Nextdoor Post Checker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* (Your existing CSS here - unchanged) */
+    :root {
+      --cork: #c9a876;
+      --cork-dark: #a9835a;
+      --paper: #faf6ec;
+      --paper-shadow: #e8dfc7;
+      --ink: #2b2620;
+      --ink-soft: #6b6154;
+      --green: #2f6b4f;
+      --green-dark: #1f4d38;
+      --red: #b5432f;
+      --red-dark: #8f3120;
+      --pin-red: #c1432f;
+      --focus: #3a6ea5;
+    }
+    * { box-sizing: border-box; }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 40%),
+                  repeating-linear-gradient(45deg, var(--cork) 0 2px, var(--cork-dark) 2px 4px);
+      background-color: var(--cork);
+      min-height: 100vh;
+    }
+    .board {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+    }
+    .board-header {
+      text-align: center;
+      position: relative;
+      margin-bottom: 32px;
+    }
+    .pin {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #e86b52, var(--pin-red) 60%, #7a2216 100%);
+      box-shadow: 0 3px 4px rgba(0,0,0,0.35);
+      margin: 0 auto 6px;
+    }
+    .board-header h1 {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 700;
+      font-size: 2.6rem;
+      margin: 0;
+      color: #fffdf8;
+      text-shadow: 0 2px 3px rgba(0,0,0,0.25);
+      letter-spacing: -0.01em;
+    }
+    .tagline {
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+      color: #fffdf8;
+      opacity: 0.85;
+      margin: 4px 0 0;
+      font-size: 1.05rem;
+    }
+    .presets {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+      padding: 0 4px;
+    }
+    .presets-label {
+      color: #fffdf8;
+      font-size: 0.82rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+    .preset-btn {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: #fffdf8;
+      padding: 6px 13px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .preset-btn:hover { background: rgba(255,255,255,0.26); }
+    .desk {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 760px) {
+      .desk { grid-template-columns: 1fr; }
+    }
+    .index-card {
+      background: var(--paper);
+      background-image: repeating-linear-gradient(to bottom, transparent 0 31px, #cdd8e0 31px 32px);
+      padding: 26px 22px 20px;
+      border-radius: 3px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+      transform: rotate(0.6deg);
+      position: relative;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-holes {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      display: flex;
+      gap: 10px;
+    }
+    .card-holes span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--cork-dark);
+      box-shadow: inset 0 2px 3px rgba(0,0,0,0.4);
+    }
+    .card-label {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      margin: 8px 0 10px 0;
+      padding-left: 34px;
+    }
+    #postInput {
+      flex: 1;
+      width: 100%;
+      min-height: 220px;
+      border: none;
+      background: transparent;
+      resize: none;
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.05rem;
+      line-height: 32px;
+      color: var(--ink);
+      padding: 0;
+    }
+    #postInput::placeholder { color: #a89e8c; }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed #d8cfb8;
+    }
+    #charCount { font-size: 0.78rem; color: var(--ink-soft); }
+    #checkBtn {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 3px;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+    #checkBtn:hover { background: var(--green-dark); }
+    #checkBtn:active { transform: scale(0.97); }
+    #checkBtn:disabled { opacity: 0.6; cursor: default; }
+    .spinner { width: 16px; height: 16px; animation: spin 0.8s linear infinite; }
+    .spinner circle { fill: none; stroke: #fff; stroke-linecap: round; stroke-dasharray: 40; stroke-dashoffset: 15; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hidden { display: none !important; }
+    .verdict-zone {
+      background: rgba(255,255,255,0.06);
+      border: 1px dashed rgba(255,255,255,0.4);
+      border-radius: 4px;
+      min-height: 400px;
+      padding: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .empty-note, .thinking-note {
+      text-align: center;
+      color: #fffdf8;
+    }
+    .empty-note p { margin: 0 0 6px; font-family: 'Source Serif 4', serif; font-size: 1.1rem; }
+    .empty-sub { font-size: 0.85rem; opacity: 0.8; font-family: 'Inter', sans-serif !important; }
+    .thinking-note p {
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+    .dots span { animation: blink 1.4s infinite; opacity: 0; }
+    .dots span:nth-child(2) { animation-delay: 0.2s; }
+    .dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes blink { 0%, 20% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
+    .report { width: 100%; position: relative; }
+    .stamp-wrap { display: flex; justify-content: center; margin-bottom: 4px; }
+    .stamp {
+      font-family: 'Special Elite', monospace;
+      font-size: 1.8rem;
+      letter-spacing: 0.08em;
+      padding: 10px 26px;
+      border: 4px solid currentColor;
+      border-radius: 8px;
+      transform: rotate(-6deg) scale(1.4);
+      opacity: 0;
+      animation: stamp-down 0.35s ease-out 0.05s forwards;
+    }
+    .stamp.approved { color: var(--green-dark); }
+    .stamp.violation { color: var(--red-dark); }
+    @keyframes stamp-down {
+      0% { opacity: 0; transform: rotate(-6deg) scale(2.2); }
+      70% { opacity: 1; }
+      100% { opacity: 0.92; transform: rotate(-6deg) scale(1); }
+    }
+    .report-body {
+      background: var(--paper);
+      border-radius: 4px;
+      padding: 18px 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    .report-row { margin-bottom: 14px; }
+    .report-row:last-child { margin-bottom: 0; }
+    .report-label {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      color: var(--ink-soft);
+      margin-bottom: 4px;
+    }
+    .report-value { font-size: 0.95rem; color: var(--ink); }
+    .report-value--prose { margin: 0; line-height: 1.5; font-family: 'Source Serif 4', serif; }
+    .report-value--fix { color: var(--green-dark); font-style: italic; }
+    #categoryValue {
+      display: inline-block;
+      background: #f4e2dd;
+      color: var(--red-dark);
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+    .copy-btn {
+      margin-top: 8px;
+      background: none;
+      border: 1px solid var(--green);
+      color: var(--green-dark);
+      padding: 6px 12px;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .copy-btn:hover { background: #eaf3ee; }
+    .board-footer {
+      text-align: center;
+      margin-top: 36px;
+    }
+    .board-footer p {
+      color: #fffdf8;
+      opacity: 0.7;
+      font-size: 0.78rem;
+    }
+  </style>
 </head>
 <body>
-
 <div class="board">
 
   <header class="board-header">
@@ -19,17 +292,16 @@
     <p class="tagline">Pin your post here before it goes on Nextdoor.</p>
   </header>
 
-  <!-- API KEY SECTION IS COMPLETELY GONE -->
-
   <section class="presets">
     <span class="presets-label">Try a sample post:</span>
     <button class="preset-btn" data-preset="offtopic">Off-topic culture-war post</button>
     <button class="preset-btn" data-preset="shaming">Neighbor callout</button>
     <button class="preset-btn" data-preset="clean">Lost dog</button>
+    <button class="preset-btn" data-preset="hate">Hate speech</button>
+    <button class="preset-btn" data-preset="sales">Illegal sales</button>
   </section>
 
   <main class="desk">
-
     <div class="index-card">
       <div class="card-holes"><span></span><span></span></div>
       <label for="postInput" class="card-label">Your draft</label>
@@ -48,11 +320,9 @@
         <p>Nothing checked yet.</p>
         <p class="empty-sub">Write a post and press <strong>Check it</strong> — the verdict lands here, stamped.</p>
       </div>
-
       <div class="thinking-note hidden" id="thinkingNote">
         <p>Reading it over<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
       </div>
-
       <div class="report hidden" id="report">
         <div class="stamp-wrap">
           <div class="stamp" id="stamp">APPROVED</div>
@@ -74,15 +344,210 @@
         </div>
       </div>
     </div>
-
   </main>
 
   <footer class="board-footer">
     <p>Runs entirely in your browser. No server, no post storage, no tracking.</p>
   </footer>
-
 </div>
 
-<script src="app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // --- DOM refs ---
+  const postInput = document.getElementById('postInput');
+  const charCount = document.getElementById('charCount');
+  const checkBtn = document.getElementById('checkBtn');
+  const checkBtnLabel = document.getElementById('checkBtnLabel');
+  const btnSpinner = document.getElementById('btnSpinner');
+  const emptyNote = document.getElementById('emptyNote');
+  const thinkingNote = document.getElementById('thinkingNote');
+  const report = document.getElementById('report');
+  const stamp = document.getElementById('stamp');
+  const categoryRow = document.getElementById('categoryRow');
+  const categoryValue = document.getElementById('categoryValue');
+  const reasonValue = document.getElementById('reasonValue');
+  const fixRow = document.getElementById('fixRow');
+  const fixValue = document.getElementById('fixValue');
+  const copyBtn = document.getElementById('copyBtn');
+
+  // --- Preset Data ---
+  const PRESETS = {
+    offtopic: "This video is so interesting — Neil deGrasse Tyson roasts MAGA Ben Shapiro to his face on his own show. The younger generation has so much on their plate because this stuff wasn't even a topic when I was growing up. Wild how much the culture has changed.",
+    shaming: "Watch out for that contractor John Smith who lives over on Oak Street! He took $500 of my money to fix my gutter and never finished the job. He's a total thief, do not hire him.",
+    clean: "Found a golden retriever near the park entrance this morning. Blue collar, no tag. Sweet dog, resting safely in my backyard right now. Message me if he's yours!",
+    hate: "All Lives Matter! Stop complaining about racism, it's not a real problem anymore.",
+    sales: "Selling my Glock 19, barely used. Also have some high-quality CBD oil for sale. $400 for both."
+  };
+
+  // --- The New, Comprehensive Ban List ---
+  // Based on Nextdoor's Community Guidelines and prohibited items list.
+  const BANNED_PATTERNS = {
+    // 1. Hate Speech & Discrimination [0†L10-L15][1†L41-L42]
+    hateSpeech: /\b(?:nigger|kike|spic|chink|gook|wetback|raghead|towelhead|coon|jungle bunny|white power|white pride|black power(?!\s+matter)|racial slur|hate crime|ethnic cleansing|master race|supremacist|aryan|holocaust denial|jew(?:ish)? (?:conspiracy|control|problem)|zionist occupation government|zog|white lives matter|all lives matter(?!\s+(?:are|is))|blue lives matter(?!\s+(?:are|is)))\b/i,
+    
+    // 2. Dehumanizing Language [0†L16-L20]
+    dehumanizing: /\b(?:illegal alien|illegals|anchor baby|alien(s)?)\b/i,
+
+    // 3. Personal Attacks & Harassment [3†L18-L20]
+    personalAttack: /\b(?:scammer|thief|liar|crook|con artist|fraud|idiot|moron|stupid|dumb|ignorant|racist|bigot|nazi|fascist|communist|snowflake|cuck|libtard|sheeple|drone|attack(?:ed)?|harass(?:ed|ment)?|bully(?:ing)?|name-calling|public shaming)\b/i,
+
+    // 4. Profanity & Crude Language [0†L6-L9][1†L10-L11]
+    profanity: /\b(?:fuck|shit|ass|bitch|damn|cunt|piss|whore|slut|cock|dick|pussy|motherfucker|cocksucker|bastard|hell|goddamn|wtf|stfu|fml)\b/i,
+
+    // 5. Victim Blaming [2†L14-L15]
+    victimBlaming: /\b(?:asking for it|deserved it|brought it on themselves|had it coming|was their fault|shouldn't have been there|provoked)\b/i,
+
+    // 6. Prohibited Items [4†L4-L10]
+    prohibitedItems: /\b(?:firearm|gun|pistol|rifle|shotgun|ammo|ammunition|bullet|magazine|weapon|alcohol|beer|wine|liquor|whiskey|vodka|homebrew|marijuana|weed|cannabis|pot|thc|cbd|prescription drug|adderall|oxycodone|xanax|vicodin|percocet|pill|drug paraphernalia|bong|pipe|syringe|tobacco|cigarette|cigar|vape|e-cigarette|adult toy|sex toy|pornography|porn|escort|prostitution|live animal|puppy|kitten|stud service|breeding)\b/i,
+
+    // 7. Violence & Threats [1†L28][2†L10]
+    violence: /\b(?:kill(?:ing)?|murder|shoot(?:ing)?|stab(?:bing)?|beat(?:ing)?|attack(?:ed)?|assault|threat(?:en)?|harm|hurt|destroy|bomb|explosive|terror|terrorist|violent|blood|gore)\b/i,
+
+    // 8. National Politics [1†L26][2†L7]
+    nationalPolitics: /\b(?:trump|biden|obama|clinton|sanders|aoc|mtg|boebert|gaetz|greene|pelosi|mcconnell|schumer|desantis|newsom|abbott|national politics|federal government|congress|senate|house of representatives|supreme court|election|voter fraud|stolen election|impeach|maga|democrat|republican|liberal|conservative|leftist|right-wing|socialist|capitalist|fascist|communist|culture war|woke|political correctness|cancel culture|deep state|qanon|pizzagate)\b/i,
+
+    // 9. Spam & Scams [4†L12-L13]
+    spam: /\b(?:mlm|pyramid scheme|get rich quick|make money fast|passive income|$$$|earn \$|click here|limited time|act now|don't miss out|guaranteed|miracle cure|detox|weight loss|supplement|forex|bitcoin|ethereum|crypto|investment opportunity|free money|work from home)\b/i,
+  };
+
+  // --- The scanner function ---
+  function scanPost(text) {
+    const lowerText = text.toLowerCase();
+    let violations = [];
+
+    for (const [category, pattern] of Object.entries(BANNED_PATTERNS)) {
+      if (pattern.test(lowerText)) {
+        violations.push(category);
+      }
+    }
+
+    // If any violations are found, return a "flagged" result
+    if (violations.length > 0) {
+      // Map the first violation to a user-friendly category name
+      const categoryMap = {
+        hateSpeech: 'Hate Speech / Discrimination',
+        dehumanizing: 'Dehumanizing Language',
+        personalAttack: 'Personal Attack / Harassment',
+        profanity: 'Profanity / Crude Language',
+        victimBlaming: 'Victim Blaming',
+        prohibitedItems: 'Prohibited Items / Sales',
+        violence: 'Violence / Threats',
+        nationalPolitics: 'Off-Topic National Politics',
+        spam: 'Spam / Scam'
+      };
+      
+      const firstViolation = violations[0];
+      const categoryName = categoryMap[firstViolation] || 'Policy Violation';
+      
+      return {
+        compliant: false,
+        category: categoryName,
+        reason: `This post contains content that violates Nextdoor's community guidelines (${categoryName}). Please revise it to be more neighborly and relevant.`,
+        suggested_fix: "Please rewrite your post to focus on local, constructive topics and avoid harmful language or prohibited items."
+      };
+    }
+
+    // If no violations, it's approved
+    return {
+      compliant: true,
+      category: null,
+      reason: "This post looks clean! No major red flags found based on Nextdoor's guidelines.",
+      suggested_fix: null
+    };
+  }
+
+  // --- UI Helpers (unchanged) ---
+  function showEmpty() {
+    emptyNote.classList.remove('hidden');
+    thinkingNote.classList.add('hidden');
+    report.classList.add('hidden');
+    checkBtn.disabled = false;
+    checkBtnLabel.textContent = 'Check it';
+    btnSpinner.classList.add('hidden');
+  }
+
+  function showThinking() {
+    emptyNote.classList.add('hidden');
+    thinkingNote.classList.remove('hidden');
+    report.classList.add('hidden');
+    checkBtn.disabled = true;
+    checkBtnLabel.textContent = 'Checking';
+    btnSpinner.classList.remove('hidden');
+  }
+
+  function renderVerdict(data) {
+    emptyNote.classList.add('hidden');
+    thinkingNote.classList.add('hidden');
+    report.classList.remove('hidden');
+    checkBtn.disabled = false;
+    checkBtnLabel.textContent = 'Check it';
+    btnSpinner.classList.add('hidden');
+    stamp.classList.remove('approved', 'violation');
+    void stamp.offsetWidth;
+    stamp.style.animation = 'none';
+    void stamp.offsetWidth;
+    stamp.style.animation = '';
+    reasonValue.textContent = data.reason || '';
+    if (data.compliant) {
+      stamp.textContent = 'APPROVED';
+      stamp.classList.add('approved');
+      categoryRow.classList.add('hidden');
+      fixRow.classList.add('hidden');
+    } else {
+      stamp.textContent = 'FLAGGED';
+      stamp.classList.add('violation');
+      categoryRow.classList.remove('hidden');
+      categoryValue.textContent = data.category || 'Policy concern';
+      if (data.suggested_fix) {
+        fixValue.textContent = data.suggested_fix;
+        fixRow.classList.remove('hidden');
+      } else {
+        fixRow.classList.add('hidden');
+      }
+    }
+  }
+
+  // --- Event Listeners ---
+  postInput.addEventListener('input', () => {
+    charCount.textContent = `${postInput.value.length} characters`;
+  });
+
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.preset;
+      postInput.value = PRESETS[key];
+      postInput.dispatchEvent(new Event('input'));
+      postInput.dataset.presetKey = key;
+    });
+  });
+
+  postInput.addEventListener('input', () => {
+    delete postInput.dataset.presetKey;
+  });
+
+  checkBtn.addEventListener('click', () => {
+    const postText = postInput.value.trim();
+    if (!postText) {
+      alert('Write (or pick) a post to check first.');
+      return;
+    }
+    showThinking();
+    setTimeout(() => {
+      const result = scanPost(postText);
+      renderVerdict(result);
+    }, 700);
+  });
+
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(fixValue.textContent).then(() => {
+      const original = copyBtn.textContent;
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => { copyBtn.textContent = original; }, 1500);
+    });
+  });
+
+  console.log('🚀 Nextdoor-compliant scanner running.');
+});
+</script>
 </body>
 </html>
