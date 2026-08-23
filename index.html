@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* (Your existing CSS here - unchanged) */
+    /* --- Your original theme, untouched --- */
     :root {
       --cork: #c9a876;
       --cork-dark: #a9835a;
@@ -379,79 +379,118 @@ document.addEventListener('DOMContentLoaded', () => {
     sales: "Selling my Glock 19, barely used. Also have some high-quality CBD oil for sale. $400 for both."
   };
 
-  // --- The New, Comprehensive Ban List ---
-  // Based on Nextdoor's Community Guidelines and prohibited items list.
-  const BANNED_PATTERNS = {
-    // 1. Hate Speech & Discrimination [0†L10-L15][1†L41-L42]
-    hateSpeech: /\b(?:nigger|kike|spic|chink|gook|wetback|raghead|towelhead|coon|jungle bunny|white power|white pride|black power(?!\s+matter)|racial slur|hate crime|ethnic cleansing|master race|supremacist|aryan|holocaust denial|jew(?:ish)? (?:conspiracy|control|problem)|zionist occupation government|zog|white lives matter|all lives matter(?!\s+(?:are|is))|blue lives matter(?!\s+(?:are|is)))\b/i,
-    
-    // 2. Dehumanizing Language [0†L16-L20]
-    dehumanizing: /\b(?:illegal alien|illegals|anchor baby|alien(s)?)\b/i,
-
-    // 3. Personal Attacks & Harassment [3†L18-L20]
-    personalAttack: /\b(?:scammer|thief|liar|crook|con artist|fraud|idiot|moron|stupid|dumb|ignorant|racist|bigot|nazi|fascist|communist|snowflake|cuck|libtard|sheeple|drone|attack(?:ed)?|harass(?:ed|ment)?|bully(?:ing)?|name-calling|public shaming)\b/i,
-
-    // 4. Profanity & Crude Language [0†L6-L9][1†L10-L11]
-    profanity: /\b(?:fuck|shit|ass|bitch|damn|cunt|piss|whore|slut|cock|dick|pussy|motherfucker|cocksucker|bastard|hell|goddamn|wtf|stfu|fml)\b/i,
-
-    // 5. Victim Blaming [2†L14-L15]
-    victimBlaming: /\b(?:asking for it|deserved it|brought it on themselves|had it coming|was their fault|shouldn't have been there|provoked)\b/i,
-
-    // 6. Prohibited Items [4†L4-L10]
-    prohibitedItems: /\b(?:firearm|gun|pistol|rifle|shotgun|ammo|ammunition|bullet|magazine|weapon|alcohol|beer|wine|liquor|whiskey|vodka|homebrew|marijuana|weed|cannabis|pot|thc|cbd|prescription drug|adderall|oxycodone|xanax|vicodin|percocet|pill|drug paraphernalia|bong|pipe|syringe|tobacco|cigarette|cigar|vape|e-cigarette|adult toy|sex toy|pornography|porn|escort|prostitution|live animal|puppy|kitten|stud service|breeding)\b/i,
-
-    // 7. Violence & Threats [1†L28][2†L10]
-    violence: /\b(?:kill(?:ing)?|murder|shoot(?:ing)?|stab(?:bing)?|beat(?:ing)?|attack(?:ed)?|assault|threat(?:en)?|harm|hurt|destroy|bomb|explosive|terror|terrorist|violent|blood|gore)\b/i,
-
-    // 8. National Politics [1†L26][2†L7]
-    nationalPolitics: /\b(?:trump|biden|obama|clinton|sanders|aoc|mtg|boebert|gaetz|greene|pelosi|mcconnell|schumer|desantis|newsom|abbott|national politics|federal government|congress|senate|house of representatives|supreme court|election|voter fraud|stolen election|impeach|maga|democrat|republican|liberal|conservative|leftist|right-wing|socialist|capitalist|fascist|communist|culture war|woke|political correctness|cancel culture|deep state|qanon|pizzagate)\b/i,
-
-    // 9. Spam & Scams [4†L12-L13]
-    spam: /\b(?:mlm|pyramid scheme|get rich quick|make money fast|passive income|$$$|earn \$|click here|limited time|act now|don't miss out|guaranteed|miracle cure|detox|weight loss|supplement|forex|bitcoin|ethereum|crypto|investment opportunity|free money|work from home)\b/i,
-  };
-
-  // --- The scanner function ---
+  // --- PRECISE SCANNER: Only flags clear violations ---
   function scanPost(text) {
-    const lowerText = text.toLowerCase();
-    let violations = [];
-
-    for (const [category, pattern] of Object.entries(BANNED_PATTERNS)) {
-      if (pattern.test(lowerText)) {
-        violations.push(category);
-      }
-    }
-
-    // If any violations are found, return a "flagged" result
-    if (violations.length > 0) {
-      // Map the first violation to a user-friendly category name
-      const categoryMap = {
-        hateSpeech: 'Hate Speech / Discrimination',
-        dehumanizing: 'Dehumanizing Language',
-        personalAttack: 'Personal Attack / Harassment',
-        profanity: 'Profanity / Crude Language',
-        victimBlaming: 'Victim Blaming',
-        prohibitedItems: 'Prohibited Items / Sales',
-        violence: 'Violence / Threats',
-        nationalPolitics: 'Off-Topic National Politics',
-        spam: 'Spam / Scam'
-      };
-      
-      const firstViolation = violations[0];
-      const categoryName = categoryMap[firstViolation] || 'Policy Violation';
-      
+    const lower = text.toLowerCase();
+    
+    // 1. CLEAR HATE SPEECH (unambiguous slurs & hate group phrases)
+    const hateSlurs = /\b(?:nigger|kike|spic|chink|gook|wetback|raghead|towelhead|coon|jungle bunny|white power|white pride|aryan|master race|holocaust denial|zionist occupation government|zog|white lives matter|all lives matter(?!\s+(?:are|is))|blue lives matter(?!\s+(?:are|is)))\b/i;
+    if (hateSlurs.test(lower)) {
       return {
         compliant: false,
-        category: categoryName,
-        reason: `This post contains content that violates Nextdoor's community guidelines (${categoryName}). Please revise it to be more neighborly and relevant.`,
-        suggested_fix: "Please rewrite your post to focus on local, constructive topics and avoid harmful language or prohibited items."
+        category: "Hate Speech",
+        reason: "This post contains hate speech or discriminatory language, which is strictly prohibited on Nextdoor.",
+        suggested_fix: "Please remove all hateful or discriminatory language before posting."
       };
     }
 
-    // If no violations, it's approved
+    // 2. DEHUMANIZING LANGUAGE
+    const dehumanizing = /\b(?:illegal alien|illegals|anchor baby)\b/i;
+    if (dehumanizing.test(lower)) {
+      return {
+        compliant: false,
+        category: "Dehumanizing Language",
+        reason: "This uses dehumanizing terms that target specific groups, which violates Nextdoor's guidelines.",
+        suggested_fix: "Please rephrase to describe the situation without using harmful labels."
+      };
+    }
+
+    // 3. SPECIFIC NAMING & SHAMING (requires a name + accusation)
+    const namingShaming = /\b(?:watch out for|warning about|beware of|don't hire|stay away from)\s+([A-Z][a-z]+ [A-Z][a-z]+)\b/i;
+    if (namingShaming.test(lower)) {
+      return {
+        compliant: false,
+        category: "Naming & Shaming",
+        reason: "Calling out a specific person by name over a dispute is considered a personal attack and is removed by Nextdoor.",
+        suggested_fix: "Describe the situation without naming the person, and ask neighbors for their experiences instead."
+      };
+    }
+
+    // 4. PROHIBITED ITEMS FOR SALE (requires a selling context)
+    const sellingGuns = /\b(?:selling|sell|for sale|for sell|wts|want to sell)\s+.*?\b(?:glock|smith & wesson|ruger|sig sauer|beretta|springfield|colt|remington|winchester|mossberg|shotgun|rifle|pistol|firearm|handgun)\b/i;
+    const sellingDrugs = /\b(?:selling|sell|for sale|for sell|wts|want to sell)\s+.*?\b(?:weed|marijuana|cannabis|thc|cbd|prescription|adderall|oxycodone|xanax|vicodin|percocet|pill)\b/i;
+    const sellingAlcohol = /\b(?:selling|sell|for sale|for sell|wts|want to sell)\s+.*?\b(?:beer|wine|liquor|whiskey|vodka|tequila|rum|gin|bourbon|scotch)\b/i;
+    const sellingAnimals = /\b(?:selling|sell|for sale|for sell|wts|want to sell|stud service|breeding)\s+.*?\b(?:puppy|kitten|dog|cat|horse|reptile|parrot)\b/i;
+    const sellingSexToys = /\b(?:selling|sell|for sale|for sell|wts|want to sell)\s+.*?\b(?:sex toy|adult toy|dildo|vibrator)\b/i;
+
+    if (sellingGuns.test(lower)) {
+      return {
+        compliant: false,
+        category: "Prohibited Item: Firearm",
+        reason: "Selling firearms or ammunition is strictly prohibited on Nextdoor's main feed.",
+        suggested_fix: "Please remove this listing. Firearm sales are not allowed on Nextdoor."
+      };
+    }
+    if (sellingDrugs.test(lower)) {
+      return {
+        compliant: false,
+        category: "Prohibited Item: Drugs/Medication",
+        reason: "Selling drugs, CBD, or prescription medications is not allowed on Nextdoor.",
+        suggested_fix: "Please remove this listing. Sales of regulated substances are prohibited."
+      };
+    }
+    if (sellingAlcohol.test(lower)) {
+      return {
+        compliant: false,
+        category: "Prohibited Item: Alcohol",
+        reason: "Selling alcohol or alcoholic beverages is not permitted on Nextdoor.",
+        suggested_fix: "Please remove this listing. Alcohol sales are prohibited on Nextdoor."
+      };
+    }
+    if (sellingAnimals.test(lower)) {
+      return {
+        compliant: false,
+        category: "Prohibited Item: Live Animals",
+        reason: "Selling live animals or offering stud services is not allowed on Nextdoor.",
+        suggested_fix: "Please remove this listing. Animal sales are prohibited. Consider rehoming through a rescue instead."
+      };
+    }
+    if (sellingSexToys.test(lower)) {
+      return {
+        compliant: false,
+        category: "Adult Content",
+        reason: "Selling adult toys or explicit content is prohibited on Nextdoor.",
+        suggested_fix: "Please remove this listing. Adult content is not allowed on Nextdoor."
+      };
+    }
+
+    // 5. CLEAR SCAM/MLM PATTERNS
+    const scam = /\b(?:mlm|pyramid scheme|get rich quick|make money fast|passive income|earn \$[0-9,]+|guaranteed income|forex trading|bitcoin investment|crypto investment|free money|work from home\s+.*?earn)\b/i;
+    if (scam.test(lower)) {
+      return {
+        compliant: false,
+        category: "Spam / Scam",
+        reason: "This appears to be a scam, MLM pitch, or get-rich-quick scheme, which is not allowed on Nextdoor.",
+        suggested_fix: "Please remove this. Nextdoor prohibits MLM promotions and scam-like offers."
+      };
+    }
+
+    // 6. EXPLICIT VIOLENCE / THREATS
+    const violence = /\b(?:kill you|murder you|shoot you|stab you|beat you|assault you|threaten to|i'll kill|i'm gonna kill|i will kill|i'm going to kill|die you|die motherfucker|wish you were dead)\b/i;
+    if (violence.test(lower)) {
+      return {
+        compliant: false,
+        category: "Violence / Threat",
+        reason: "This post contains violent language or a direct threat, which is strictly prohibited.",
+        suggested_fix: "Please remove all threatening language before posting."
+      };
+    }
+
+    // --- If no violations found, APPROVED ---
     return {
       compliant: true,
       category: null,
-      reason: "This post looks clean! No major red flags found based on Nextdoor's guidelines.",
+      reason: "This post looks clean! No violations found based on Nextdoor's guidelines.",
       suggested_fix: null
     };
   }
@@ -546,7 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  console.log('🚀 Nextdoor-compliant scanner running.');
+  console.log('🚀 Precise scanner running – only flags clear violations.');
 });
 </script>
 </body>
