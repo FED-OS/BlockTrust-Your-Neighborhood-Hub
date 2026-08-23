@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ---- DOM refs (matches your HTML IDs) ----
-  const apiKeyInput = document.getElementById('apiKey');
-  const modelSelect = document.getElementById('modelSelect');
+  // ---- DOM refs ----
   const postInput = document.getElementById('postInput');
   const charCount = document.getElementById('charCount');
   const checkBtn = document.getElementById('checkBtn');
@@ -20,14 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const fixValue = document.getElementById('fixValue');
   const copyBtn = document.getElementById('copyBtn');
 
-  // ---- Preset texts (matching your HTML data-preset) ----
+  // ---- Preset texts ----
   const PRESETS = {
     offtopic: "This video is so interesting — Neil deGrasse Tyson roasts MAGA Ben Shapiro to his face on his own show. The younger generation has so much on their plate because this stuff wasn't even a topic when I was growing up. Wild how much the culture has changed.",
     shaming: "Watch out for that contractor John Smith who lives over on Oak Street! He took $500 of my money to fix my gutter and never finished the job. He's a total thief, do not hire him.",
     clean: "Found a golden retriever near the park entrance this morning. Blue collar, no tag. Sweet dog, resting safely in my backyard right now. Message me if he's yours!"
   };
 
-  // ---- Local offline verdicts for the exact presets ----
+  // ---- Local verdicts for the exact presets ----
   const SIMULATIONS = {
     offtopic: {
       compliant: false,
@@ -49,10 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // ---- The pure local scanner (no API, no keys) ----
+  // ---- Pure local scanner (no API, no keys) ----
   function localScan(text) {
     const lower = text.toLowerCase();
-    // Red‑flag patterns
     const politics = /maga|trump|biden|democrat|republican|transgender|lgbtq|shapiro|tyson|culture war|woke/i;
     const shaming = /scammer|thief|liar|crook|con artist|steal|stole|fraud|never hire|watch out for \w+ \w+/i;
     const nameAttack = /john smith|jane doe|mr\.|ms\.|mrs\./i;
@@ -84,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ---- Rough fallback guess for arbitrary text (when it's not a preset) ----
+  // ---- Rough fallback guess for arbitrary text ----
   function guessVerdict(text) {
     const lower = text.toLowerCase();
     const shamingWords = ['thief', 'scammer', 'liar', 'stole', 'don\'t hire', 'do not hire'];
@@ -94,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return {
         compliant: false,
         category: 'Possible public shaming',
-        reason: 'This reads like it names and blames a specific person, which Nextdoor treats as a personal attack. (Local guess – no API used.)',
+        reason: 'This reads like it names and blames a specific person, which Nextdoor treats as a personal attack.',
         suggested_fix: 'Describe the situation without naming the person, and ask neighbours for their own experiences instead.'
       };
     }
@@ -102,14 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
       return {
         compliant: false,
         category: 'Possible off‑topic politics',
-        reason: 'This looks like national political or culture‑war content, which belongs in a Nextdoor Group, not the main feed. (Local guess – no API used.)',
+        reason: 'This looks like national political or culture‑war content, which belongs in a Nextdoor Group, not the main feed.',
         suggested_fix: 'Reframe around the local angle — how this affects your street, block, or neighbours directly.'
       };
     }
     return {
       compliant: true,
       category: null,
-      reason: 'No obvious red flags in this local guess, but this is not a substitute for a real AI check. (But you wanted no AI, so we’re good!)',
+      reason: 'No obvious red flags found in this local check.',
       suggested_fix: null
     };
   }
@@ -170,12 +167,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ---- Event: character counter ----
+  // ---- Character counter ----
   postInput.addEventListener('input', () => {
     charCount.textContent = `${postInput.value.length} characters`;
   });
 
-  // ---- Event: preset buttons ----
+  // ---- Preset buttons ----
   document.querySelectorAll('.preset-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const key = btn.dataset.preset;
@@ -186,11 +183,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   postInput.addEventListener('input', () => {
-    delete postInput.dataset.presetKey; // manual typing overrides preset shortcut
+    delete postInput.dataset.presetKey;
   });
 
-  // ---- Event: "Check it" button ----
-  checkBtn.addEventListener('click', async () => {
+  // ---- Check button ----
+  checkBtn.addEventListener('click', () => {
     const postText = postInput.value.trim();
     if (!postText) {
       alert('Write (or pick) a post to check first.');
@@ -199,14 +196,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     showThinking();
 
-    // Simulate a short delay for the animation to feel satisfying
     setTimeout(() => {
       const presetKey = postInput.dataset.presetKey;
       let result;
       if (presetKey && SIMULATIONS[presetKey]) {
         result = SIMULATIONS[presetKey];
       } else {
-        // Use the full local scanner, then fall back to the guesser
         const scanned = localScan(postText);
         if (scanned.compliant === false || scanned.reason !== 'Looks like a helpful, neighbourly post. No major red flags found.') {
           result = scanned;
@@ -215,10 +210,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
       renderVerdict(result);
-    }, 700); // mimics network delay, but no actual network call
+    }, 700);
   });
 
-  // ---- Event: copy button ----
+  // ---- Copy button ----
   copyBtn.addEventListener('click', () => {
     navigator.clipboard.writeText(fixValue.textContent).then(() => {
       const original = copyBtn.textContent;
@@ -227,8 +222,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ---- Cleanup: the API key and model fields do nothing now ----
-  // They're left in the HTML but we ignore them completely.
-  // Optionally, you can hide them by adding a CSS class, but that's up to you.
-  console.log('🚀 No API key needed – everything runs locally.');
+  console.log('🚀 Pure local checker running — no APIs, no keys.');
 });
