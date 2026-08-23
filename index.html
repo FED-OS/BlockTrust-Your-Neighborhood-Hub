@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corkboard — Nextdoor Post Checker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="board">
+
+  <header class="board-header">
+    <div class="pin"></div>
+    <h1>Corkboard</h1>
+    <p class="tagline">Pin your post here before it goes on Nextdoor.</p>
+  </header>
+
+  <section class="setup-card">
+    <div class="setup-row">
+      <div class="setup-field">
+        <label for="apiKey">OpenAI API key</label>
+        <input type="password" id="apiKey" placeholder="sk-... (leave blank to try the demo presets)">
+      </div>
+      <div class="setup-field setup-field--narrow">
+        <label for="modelSelect">Model</label>
+        <select id="modelSelect">
+          <option value="gpt-4o-mini">gpt-4o-mini</option>
+          <option value="gpt-4o">gpt-4o</option>
+        </select>
+      </div>
+    </div>
+    <p class="setup-note">Your key stays in your browser and is sent straight to OpenAI. It's never seen by any server of ours — there isn't one.</p>
+  </section>
+
+  <section class="presets">
+    <span class="presets-label">Try a sample post:</span>
+    <button class="preset-btn" data-preset="offtopic">Off-topic culture-war post</button>
+    <button class="preset-btn" data-preset="shaming">Neighbor callout</button>
+    <button class="preset-btn" data-preset="clean">Lost dog</button>
+  </section>
+
+  <main class="desk">
+
+    <div class="index-card">
+      <div class="card-holes"><span></span><span></span></div>
+      <label for="postInput" class="card-label">Your draft</label>
+      <textarea id="postInput" placeholder="Write what you're about to post on Nextdoor..."></textarea>
+      <div class="card-footer">
+        <span id="charCount">0 characters</span>
+        <button id="checkBtn">
+          <span id="checkBtnLabel">Check it</span>
+          <svg id="btnSpinner" viewBox="0 0 24 24" class="spinner hidden"><circle cx="12" cy="12" r="9" stroke-width="3"></circle></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="verdict-zone" id="verdictZone">
+      <div class="empty-note" id="emptyNote">
+        <p>Nothing checked yet.</p>
+        <p class="empty-sub">Write a post and press <strong>Check it</strong> — the verdict lands here, stamped.</p>
+      </div>
+
+      <div class="thinking-note hidden" id="thinkingNote">
+        <p>Reading it over<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+      </div>
+
+      <div class="report hidden" id="report">
+        <div class="stamp-wrap">
+          <div class="stamp" id="stamp">APPROVED</div>
+        </div>
+        <div class="report-body">
+          <div class="report-row" id="categoryRow">
+            <span class="report-label">Flagged for</span>
+            <span class="report-value" id="categoryValue"></span>
+          </div>
+          <div class="report-row">
+            <span class="report-label">Why</span>
+            <p class="report-value report-value--prose" id="reasonValue"></p>
+          </div>
+          <div class="report-row hidden" id="fixRow">
+            <span class="report-label">Try this instead</span>
+            <p class="report-value report-value--prose report-value--fix" id="fixValue"></p>
+            <button class="copy-btn" id="copyBtn">Copy revised text</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="board-footer">
+    <p>Runs entirely in your browser. No server, no post storage, no tracking.</p>
+  </footer>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
