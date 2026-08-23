@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Elements
+  // ---- DOM refs (matches your HTML IDs) ----
   const apiKeyInput = document.getElementById('apiKey');
   const modelSelect = document.getElementById('modelSelect');
   const postInput = document.getElementById('postInput');
@@ -20,147 +20,71 @@ document.addEventListener('DOMContentLoaded', () => {
   const fixValue = document.getElementById('fixValue');
   const copyBtn = document.getElementById('copyBtn');
 
-  const SYSTEM_PROMPT = `You are an automated content moderation assistant for Nextdoor, a hyperlocal neighborhood platform. Evaluate the user's draft post against Nextdoor's community guidelines, watching in particular for:
-- national politics or culture-war topics that aren't locally relevant
-- public naming-and-shaming or personal attacks on named individuals
-- discrimination or hate speech
-- unverified local scams, MLM pitches, or predatory selling
-- sale of unregulated goods (firearms, ammunition, alcohol, tobacco, prescription drugs)
-- repetitive commercial spam
-
-Respond ONLY with a JSON object in exactly this shape, no other text:
-{
-  "compliant": true or false,
-  "category": "short name of the violated rule, or null if compliant",
-  "reason": "two sentences max explaining the verdict",
-  "suggested_fix": "a rewritten, compliant version that keeps the useful local intent, or null if compliant"
-}`;
-
+  // ---- Preset texts (matching your HTML data-preset) ----
   const PRESETS = {
     offtopic: "This video is so interesting — Neil deGrasse Tyson roasts MAGA Ben Shapiro to his face on his own show. The younger generation has so much on their plate because this stuff wasn't even a topic when I was growing up. Wild how much the culture has changed.",
     shaming: "Watch out for that contractor John Smith who lives over on Oak Street! He took $500 of my money to fix my gutter and never finished the job. He's a total thief, do not hire him.",
     clean: "Found a golden retriever near the park entrance this morning. Blue collar, no tag. Sweet dog, resting safely in my backyard right now. Message me if he's yours!"
   };
 
-  // Local fallback verdicts so the demo works with zero API key
+  // ---- Local offline verdicts for the exact presets ----
   const SIMULATIONS = {
     offtopic: {
       compliant: false,
-      category: "Off-topic / national politics",
-      reason: "This centers on a national culture-war debate rather than anything happening in your neighborhood, and the phrasing around it is likely to get flagged by moderators.",
-      suggested_fix: "Any other local parents feeling a bit of generational whiplash lately? I was watching a debate about how much more today's teens navigate compared to what we grew up with — curious how neighbors are handling these conversations at home."
+      category: "Off‑topic / national politics",
+      reason: "This centers on a national culture‑war debate rather than anything local. Nextdoor moderators flag these for the main feed.",
+      suggested_fix: "Any other local parents feeling generational whiplash? I watched a debate about how much more today's teens navigate — curious how neighbours are handling these conversations at home."
     },
     shaming: {
       compliant: false,
       category: "Public naming & shaming",
-      reason: "Calling out a specific person by name over a payment dispute is a personal attack, which Nextdoor removes to prevent public feuds.",
-      suggested_fix: "Looking for recommendations: has anyone had a good (or bad) experience with gutter repair contractors in the area recently? Want to compare notes before I hire someone."
+      reason: "Calling out a specific person by name over a dispute is a personal attack — Nextdoor removes these to prevent feuds.",
+      suggested_fix: "Looking for recommendations: has anyone had a good (or bad) experience with gutter repair contractors lately? I want to compare notes before hiring."
     },
     clean: {
       compliant: true,
       category: null,
-      reason: "This is a straightforward local safety/lost-and-found post with no personal attacks, politics, or commercial content.",
+      reason: "Straightforward local lost‑and‑found post — no personal attacks, no politics, no commercial content.",
       suggested_fix: null
     }
   };
 
-  if (localStorage.getItem('nd_checker_key')) {
-    apiKeyInput.value = localStorage.getItem('nd_checker_key');
+  // ---- The pure local scanner (no API, no keys) ----
+  function localScan(text) {
+    const lower = text.toLowerCase();
+    // Red‑flag patterns
+    const politics = /maga|trump|biden|democrat|republican|transgender|lgbtq|shapiro|tyson|culture war|woke/i;
+    const shaming = /scammer|thief|liar|crook|con artist|steal|stole|fraud|never hire|watch out for \w+ \w+/i;
+    const nameAttack = /john smith|jane doe|mr\.|ms\.|mrs\./i;
+    const weapons = /gun|firearm|ammo|ammunition|rifle|pistol|drugs|weed|marijuana|cocaine/i;
+    const spam = /mlm|pyramid|make money fast|click here|earn \$/i;
+
+    let category = null;
+    let reason = '';
+    let suggestion = null;
+
+    if (politics.test(lower)) {
+      category = 'National Politics / Culture War';
+      reason = 'This reads like a national political debate, not a local neighborhood topic. Nextdoor keeps these in dedicated Groups.';
+      suggestion = 'Any other local parents feeling generational whiplash? I watched a scientific debate about modern social topics – how are you keeping communication open with teens today?';
+    } else if (shaming.test(lower) || nameAttack.test(lower)) {
+      category = 'Public Naming & Shaming';
+      reason = 'Directly calling out an individual or business by name with accusations can turn into harassment. Nextdoor bans this.';
+      suggestion = 'Suspicious activity notice: unfamiliar van near Main St, police non‑emergency notified. Keep porch lights on!';
+    } else if (weapons.test(lower) || spam.test(lower)) {
+      category = 'Unregulated Goods / Scams';
+      reason = 'Selling restricted items or promoting sketchy business schemes is not allowed in the main feed.';
+      suggestion = 'If you need contractor recs, ask neighbours for their personal experiences via DMs.';
+    }
+
+    if (category) {
+      return { compliant: false, category, reason, suggested_fix: suggestion };
+    } else {
+      return { compliant: true, category: null, reason: 'Looks like a helpful, neighbourly post. No major red flags found.', suggested_fix: null };
+    }
   }
 
-  postInput.addEventListener('input', () => {
-    charCount.textContent = `${postInput.value.length} characters`;
-  });
-
-  document.querySelectorAll('.preset-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const key = btn.dataset.preset;
-      postInput.value = PRESETS[key];
-      postInput.dispatchEvent(new Event('input'));
-      postInput.dataset.presetKey = key;
-    });
-  });
-
-  postInput.addEventListener('input', () => {
-    // typing manually invalidates the "this came from a preset" shortcut
-    delete postInput.dataset.presetKey;
-  });
-
-  checkBtn.addEventListener('click', async () => {
-    const apiKey = apiKeyInput.value.trim();
-    const postText = postInput.value.trim();
-    const model = modelSelect.value;
-
-    if (!postText) {
-      alert('Write (or pick) a post to check first.');
-      return;
-    }
-
-    showThinking();
-
-    // No key entered — use the local canned verdict for known presets,
-    // or a generic keyword-based guess otherwise, so the demo still works.
-    if (!apiKey) {
-      setTimeout(() => {
-        const presetKey = postInput.dataset.presetKey;
-        if (presetKey && SIMULATIONS[presetKey]) {
-          renderVerdict(SIMULATIONS[presetKey]);
-        } else {
-          renderVerdict(guessVerdict(postText));
-        }
-      }, 900);
-      return;
-    }
-
-    localStorage.setItem('nd_checker_key', apiKey);
-
-    try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-          model: model,
-          response_format: { type: 'json_object' },
-          temperature: 0.2,
-          messages: [
-            { role: 'system', content: SYSTEM_PROMPT },
-            { role: 'user', content: postText }
-          ]
-        })
-      });
-
-      if (!response.ok) {
-        const errBody = await response.json().catch(() => ({}));
-        throw new Error(errBody.error?.message || `Request failed (${response.status})`);
-      }
-
-      const data = await response.json();
-      const content = data.choices?.[0]?.message?.content;
-      if (!content) throw new Error('No content returned from the API.');
-
-      const parsed = JSON.parse(content);
-      renderVerdict(parsed);
-
-    } catch (err) {
-      console.error(err);
-      alert(`Couldn't complete the check: ${err.message}`);
-      showEmpty();
-    }
-  });
-
-  copyBtn.addEventListener('click', () => {
-    navigator.clipboard.writeText(fixValue.textContent).then(() => {
-      const original = copyBtn.textContent;
-      copyBtn.textContent = 'Copied!';
-      setTimeout(() => { copyBtn.textContent = original; }, 1500);
-    });
-  });
-
-  // Very rough offline heuristic — only used when there's no API key
-  // and the text isn't one of the built-in presets.
+  // ---- Rough fallback guess for arbitrary text (when it's not a preset) ----
   function guessVerdict(text) {
     const lower = text.toLowerCase();
     const shamingWords = ['thief', 'scammer', 'liar', 'stole', 'don\'t hire', 'do not hire'];
@@ -170,26 +94,27 @@ Respond ONLY with a JSON object in exactly this shape, no other text:
       return {
         compliant: false,
         category: 'Possible public shaming',
-        reason: 'This reads like it names and blames a specific person, which Nextdoor treats as a personal attack. (This is a rough offline guess — add an API key for a real read.)',
-        suggested_fix: 'Describe the situation without naming the person, and ask neighbors for their own experiences instead.'
+        reason: 'This reads like it names and blames a specific person, which Nextdoor treats as a personal attack. (Local guess – no API used.)',
+        suggested_fix: 'Describe the situation without naming the person, and ask neighbours for their own experiences instead.'
       };
     }
     if (politicalWords.some(w => lower.includes(w))) {
       return {
         compliant: false,
-        category: 'Possible off-topic politics',
-        reason: 'This looks like national political or culture-war content, which belongs in a Nextdoor Group, not the main feed. (This is a rough offline guess — add an API key for a real read.)',
-        suggested_fix: 'Reframe around the local angle — how this affects your street, block, or neighbors directly.'
+        category: 'Possible off‑topic politics',
+        reason: 'This looks like national political or culture‑war content, which belongs in a Nextdoor Group, not the main feed. (Local guess – no API used.)',
+        suggested_fix: 'Reframe around the local angle — how this affects your street, block, or neighbours directly.'
       };
     }
     return {
       compliant: true,
       category: null,
-      reason: 'No obvious red flags in this offline guess, but this mode is not a substitute for a real check. Add an API key for an accurate read.',
+      reason: 'No obvious red flags in this local guess, but this is not a substitute for a real AI check. (But you wanted no AI, so we’re good!)',
       suggested_fix: null
     };
   }
 
+  // ---- UI helpers ----
   function showEmpty() {
     emptyNote.classList.remove('hidden');
     thinkingNote.classList.add('hidden');
@@ -216,9 +141,9 @@ Respond ONLY with a JSON object in exactly this shape, no other text:
     checkBtnLabel.textContent = 'Check it';
     btnSpinner.classList.add('hidden');
 
-    // restart the stamp-down animation
+    // Reset stamp animation
     stamp.classList.remove('approved', 'violation');
-    void stamp.offsetWidth; // reflow to reset animation
+    void stamp.offsetWidth;
     stamp.style.animation = 'none';
     void stamp.offsetWidth;
     stamp.style.animation = '';
@@ -244,4 +169,66 @@ Respond ONLY with a JSON object in exactly this shape, no other text:
       }
     }
   }
+
+  // ---- Event: character counter ----
+  postInput.addEventListener('input', () => {
+    charCount.textContent = `${postInput.value.length} characters`;
+  });
+
+  // ---- Event: preset buttons ----
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.preset;
+      postInput.value = PRESETS[key];
+      postInput.dispatchEvent(new Event('input'));
+      postInput.dataset.presetKey = key;
+    });
+  });
+
+  postInput.addEventListener('input', () => {
+    delete postInput.dataset.presetKey; // manual typing overrides preset shortcut
+  });
+
+  // ---- Event: "Check it" button ----
+  checkBtn.addEventListener('click', async () => {
+    const postText = postInput.value.trim();
+    if (!postText) {
+      alert('Write (or pick) a post to check first.');
+      return;
+    }
+
+    showThinking();
+
+    // Simulate a short delay for the animation to feel satisfying
+    setTimeout(() => {
+      const presetKey = postInput.dataset.presetKey;
+      let result;
+      if (presetKey && SIMULATIONS[presetKey]) {
+        result = SIMULATIONS[presetKey];
+      } else {
+        // Use the full local scanner, then fall back to the guesser
+        const scanned = localScan(postText);
+        if (scanned.compliant === false || scanned.reason !== 'Looks like a helpful, neighbourly post. No major red flags found.') {
+          result = scanned;
+        } else {
+          result = guessVerdict(postText);
+        }
+      }
+      renderVerdict(result);
+    }, 700); // mimics network delay, but no actual network call
+  });
+
+  // ---- Event: copy button ----
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(fixValue.textContent).then(() => {
+      const original = copyBtn.textContent;
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => { copyBtn.textContent = original; }, 1500);
+    });
+  });
+
+  // ---- Cleanup: the API key and model fields do nothing now ----
+  // They're left in the HTML but we ignore them completely.
+  // Optionally, you can hide them by adding a CSS class, but that's up to you.
+  console.log('🚀 No API key needed – everything runs locally.');
 });
