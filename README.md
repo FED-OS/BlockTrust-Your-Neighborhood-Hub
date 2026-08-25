@@ -1,112 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Corkboard — Nextdoor Post Checker</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+<img width="1632" height="2176" alt="blocktrust_pet_walk_alert" src="https://github.com/user-attachments/assets/57e352c3-094b-4096-9761-a7c123166b32" />
+# BlockTrust – Your Neighborhood Hub
 
-<div class="board">
+**BlockTrust** is a community platform for neighbors to connect, share, and support each other. Built as a free-speech alternative to Nextdoor.
 
-  <header class="board-header">
-    <button id="lampToggle" class="lamp-toggle" aria-pressed="false" title="Toggle the streetlamp">
-      <span class="lamp-icon">💡</span>
-    </button>
-    <div class="pin"></div>
-    <h1>Corkboard</h1>
-    <p class="tagline">Pin your post here before it goes on Nextdoor.</p>
-  </header>
+## Features
 
-  <section class="setup-card">
-    <div class="setup-row">
-      <div class="setup-field">
-        <label for="apiKey">OpenAI API key</label>
-        <input type="password" id="apiKey" placeholder="sk-... (leave blank to try the demo presets)">
-      </div>
-      <div class="setup-field setup-field--narrow">
-        <label for="modelSelect">Model</label>
-        <select id="modelSelect">
-          <option value="gpt-4o-mini">gpt-4o-mini</option>
-          <option value="gpt-4o">gpt-4o</option>
-        </select>
-      </div>
-    </div>
-    <p class="setup-note">Your key stays in your browser and is sent straight to OpenAI. It's never seen by any server of ours — there isn't one.</p>
-  </section>
+- 🐾 **Lost & Found Pets** – Post urgent alerts with rewards. Escrow holds payment until the pet is found.
+- 🛠️ **Verified Local Pros** – Background-checked, licensed handymen, plumbers, and more.
+- 💬 **Free Speech** – No censorship. We only remove illegal activity, harassment, or spam.
+- 👑 **Premium Membership** – $9.99/month. Unlimited alerts, boosted posts, and a verified badge.
+- 📰 **Community News** – Block parties, events, meetings, and local updates.
 
-  <section class="presets">
-    <span class="presets-label">Try a sample post:</span>
-    <button class="preset-btn" data-preset="offtopic">Off-topic culture-war post</button>
-    <button class="preset-btn" data-preset="shaming">Neighbor callout</button>
-    <button class="preset-btn" data-preset="clean">Lost dog</button>
-  </section>
+## Tech Stack
 
-  <main class="desk">
+- **Frontend:** HTML, CSS, JavaScript (Vanilla)
+- **Backend:** Supabase (Auth, Database, Storage)
+- **Payments:** Stripe (coming soon)
+- **Hosting:** GitHub Pages
 
-    <div class="index-card">
-      <div class="card-holes"><span></span><span></span></div>
-      <label for="postInput" class="card-label">Your draft</label>
-      <textarea id="postInput" placeholder="Write what you're about to post on Nextdoor..."></textarea>
-      <div class="card-meta">
-        <span id="wordWarning" class="word-warning hidden">⚠ Long post — Nextdoor engagement drops off past ~500 words</span>
-      </div>
-      <div class="card-footer">
-        <div class="footer-left">
-          <span id="charCount">0 characters</span>
-          <button id="shareBtn" class="share-btn" title="Copy a link with this draft pre-filled">🔗 Share this draft</button>
-        </div>
-        <button id="checkBtn">
-          <span id="checkBtnLabel">Check it</span>
-          <svg id="btnSpinner" viewBox="0 0 24 24" class="spinner hidden"><circle cx="12" cy="12" r="9" stroke-width="3"></circle></svg>
-        </button>
-      </div>
-    </div>
+## Deployment
 
-    <div class="verdict-zone" id="verdictZone">
-      <div class="empty-note" id="emptyNote">
-        <p>Nothing checked yet.</p>
-        <p class="empty-sub">Write a post and press <strong>Check it</strong> — the verdict lands here, stamped.</p>
-      </div>
+1. Fork this repository
+2. Enable GitHub Pages in Settings → Pages
+3. Select the `main` branch and `/root` folder
+4. Visit `https://yourusername.github.io/blocktrust`
 
-      <div class="thinking-note hidden" id="thinkingNote">
-        <p>Reading it over<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
-      </div>
+## Environment Variables (for Supabase)
 
-      <div class="report hidden" id="report">
-        <div class="stamp-wrap">
-          <div class="stamp" id="stamp">APPROVED</div>
-        </div>
-        <div class="report-body">
-          <div class="report-row" id="categoryRow">
-            <span class="report-label">Flagged for</span>
-            <span class="report-value" id="categoryValue"></span>
-          </div>
-          <div class="report-row">
-            <span class="report-label">Why</span>
-            <p class="report-value report-value--prose" id="reasonValue"></p>
-          </div>
-          <div class="report-row hidden" id="fixRow">
-            <span class="report-label">Try this instead</span>
-            <p class="report-value report-value--prose report-value--fix" id="fixValue"></p>
-            <button class="copy-btn" id="copyBtn">Copy revised text</button>
-          </div>
-        </div>
-      </div>
-    </div>
+Add these to your `index.html` in the `<script>` section:
 
-  </main>
-
-  <footer class="board-footer">
-    <p>Runs entirely in your browser. No server, no post storage, no tracking.</p>
-  </footer>
-
-</div>
-
-<script src="app.js"></script>
-</body>
-</html>
+```javascript
+const SUPABASE_URL = 'https://your-project.supabase.co';
+const SUPABASE_ANON_KEY = 'your-anon-key';
