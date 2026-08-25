@@ -1,8 +1,0 @@
-=== BROWSER STATE ===
-URL: http://localhost:8123/index.html
-Title: BlockTrust – Your Neighborhood Hub
-Result: Dismissed overlay using: text=Agree
-Warning: Overlay/modal detected - consider using dismiss_overlay
-Result: ERROR: screenshot failed — Error: Unsupported screenshot mime type for path "/workspace/.screenshots/baseline": None
-Screenshot: /workspace/.screenshots/step_028.png
-Use see-image to view: /workspace/.screenshots/step_028.png

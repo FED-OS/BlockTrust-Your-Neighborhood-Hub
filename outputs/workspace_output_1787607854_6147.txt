@@ -1,4 +1,0 @@
-index.html: 200
-README.md: 200
-screenshot clean: 200
-screenshot uncensored: 200

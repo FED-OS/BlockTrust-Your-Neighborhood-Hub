@@ -1,5 +1,0 @@
-=== BROWSER STATE ===
-URL: http://localhost:8128/index.html
-Title: BlockTrust — Your Neighborhood, Uncensored
-Result: Screenshot saved to /workspace/.screenshots/upgraded_home.png
-Warning: Overlay/modal detected - consider using dismiss_overlay
