@@ -1,0 +1,197 @@
+/*
+ * ============================================================
+ * BlockTrust — styles.css
+ * ------------------------------------------------------------
+ * A lightweight, print-friendly stylesheet for the project's
+ * Markdown documentation when it is rendered standalone (for
+ * example, viewed directly in a browser or exported to PDF).
+ *
+ * This file is NOT used by the BlockTrust app itself — the app's
+ * design system lives in css/theme.css. styles.css exists so that
+ * the project's documentation pages (README, CONTRIBUTING, ADR,
+ * ROADMAP, etc.) look clean and on-brand when read outside of
+ * GitHub's built-in Markdown renderer, and so they print well.
+ *
+ * It is intentionally tiny: a paper-like reading surface, a
+ * measure-limited text column, headings that echo the app's
+ * green accent, comfortable line-height, and a few niceties for
+ * code blocks, tables, and blockquotes. No framework, no build.
+ * ============================================================
+ */
+
+:root {
+  /* Echo the app's palette so docs feel like the product. */
+  --bt-green-600: #16a34a;
+  --bt-green-700: #15803d;
+  --bt-ink: #1a1f2e;
+  --bt-ink-soft: #475569;
+  --bt-line: #e2e8f0;
+  --bt-bg: #ffffff;
+  --bt-bg-alt: #f8fafc;
+  --bt-maxw: 760px;
+  --bt-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  --bt-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bt-ink: #e8edf5;
+    --bt-ink-soft: #94a3b8;
+    --bt-line: #243044;
+    --bt-bg: #0f1623;
+    --bt-bg-alt: #16202e;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bt-bg);
+  color: var(--bt-ink);
+  font-family: var(--bt-font);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+main,
+.markdown-body,
+body > article {
+  max-width: var(--bt-maxw);
+  margin: 2.5rem auto;
+  padding: 0 1.25rem;
+}
+
+/* Headings ------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.25;
+  color: var(--bt-ink);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0 0 0.5em;
+  border-bottom: 2px solid var(--bt-green-600);
+  padding-bottom: 0.3em;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 2em 0 0.6em;
+  border-bottom: 1px solid var(--bt-line);
+  padding-bottom: 0.25em;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin: 1.6em 0 0.5em;
+}
+
+h4 { font-size: 1.05rem; margin: 1.4em 0 0.4em; }
+
+/* Links ---------------------------------------------------- */
+a {
+  color: var(--bt-green-700);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+a:hover { border-bottom-color: currentColor; }
+
+/* Paragraphs & lists -------------------------------------- */
+p { margin: 0 0 1em; }
+
+ul, ol { margin: 0 0 1em; padding-left: 1.5em; }
+li { margin: 0.25em 0; }
+li > ul, li > ol { margin: 0.25em 0; }
+
+/* Code ----------------------------------------------------- */
+code {
+  font-family: var(--bt-mono);
+  font-size: 0.9em;
+  background: var(--bt-bg-alt);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  border: 1px solid var(--bt-line);
+}
+
+pre {
+  background: var(--bt-bg-alt);
+  border: 1px solid var(--bt-line);
+  border-radius: 8px;
+  padding: 1em 1.2em;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* Blockquote ---------------------------------------------- */
+blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  border-left: 4px solid var(--bt-green-600);
+  background: var(--bt-bg-alt);
+  color: var(--bt-ink-soft);
+  border-radius: 0 6px 6px 0;
+}
+blockquote p { margin: 0.3em 0; }
+
+/* Tables -------------------------------------------------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 0.95em;
+}
+th, td {
+  text-align: left;
+  padding: 0.6em 0.8em;
+  border: 1px solid var(--bt-line);
+}
+th {
+  background: var(--bt-bg-alt);
+  font-weight: 700;
+}
+tr:nth-child(even) td { background: var(--bt-bg-alt); }
+
+/* Horizontal rule ---------------------------------------- */
+hr {
+  border: none;
+  border-top: 1px solid var(--bt-line);
+  margin: 2em 0;
+}
+
+/* Images -------------------------------------------------- */
+img { max-width: 100%; height: auto; border-radius: 8px; }
+
+/* Print friendliness ------------------------------------- */
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+  main, .markdown-body, body > article {
+    margin: 0;
+    max-width: none;
+    padding: 0;
+  }
+  a { color: #000; border: none; }
+  pre, blockquote, table, th, td {
+    border-color: #ccc;
+  }
+  h1 { border-color: #000; }
+  h2 { page-break-after: avoid; }
+  pre, table, blockquote { page-break-inside: avoid; }
+}
