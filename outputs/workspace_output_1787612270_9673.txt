@@ -1,0 +1,84 @@
+=== store.js methods (grep) ===
+68:    save();
+102:    update(s => { s.posts.unshift(post); });
+103:    pushAlert({ postId: post.id, type: "post", text: `Your post "${post.title || 'untitled'}" was published.` });
+108:    update(s => { s.posts = s.posts.filter(p => p.id !== postId); });
+112:    update(s => {
+118:        pushAlertRaw(s, { postId, type: "like", text: `Someone liked your post "${p.title || 'untitled'}".`, read: false });
+126:    update(s => {
+132:        pushAlertRaw(s, { postId, type: "comment", text: `New comment on "${p.title || 'untitled'}": "${trimmed.slice(0, 50)}"`, read: false });
+138:    update(s => {
+142:      pushAlertRaw(s, { postId, type: "reward", text: `Reward claim submitted for $${p.reward}. Pending verification.`, read: false });
+147:    update(s => {
+152:      pushAlertRaw(s, { postId, type: "reward", text: `Reward of $${p.reward} released. Platform fee $${fee}. You receive $${p.reward - fee}.`, read: false });
+157:    update(s => pushAlertRaw(s, { ...a, read: false }));
+166:    update(s => { s.alerts.forEach(a => a.read = true); });
+170:    update(s => { s.alerts = []; });
+174:    update(s => { s.me = { ...s.me, ...patch }; });
+178:    update(s => { s.theme = theme; });
+182:    update(s => { s.premium = !!v; });
+186:    update(s => { s.activeCategory = cat; });
+190:    update(s => { s.sort = sort; });
+194:    update(s => { s.draft = text || ""; });
+199:    save();
+209:    init, getState, subscribe, update,
+210:    addPost, deletePost, toggleLike, addComment,
+211:    claimReward, releaseReward,
+212:    markAlertsRead, clearAlerts,
+213:    updateProfile, setTheme, setPremium, setCategory, setSort, saveDraft,
+214:    resetAll, getUser,
+=== render.js methods (grep) ===
+10:  badge(user) {
+17:  postCard(post) {
+69:  rewardButton(post) {
+87:  commentsList(post) {
+105:  feed(state) {
+135:  emptyState(kind) {
+143:  categoryBar(state) {
+152:  alertsView(state) {
+178:  alertIcon(type) {
+183:  profileView(state) {
+254:  alertBadge(state) {
+272:  premiumView(state) {
+319:  premiumBenefits() {
+=== data.js exports (last 40 lines) ===
+    userId: "jane",
+    category: "news",
+    title: "New Community Center – Share Your Ideas",
+    content: "The city is planning a new community center on 5th and Main. Public meeting this Thursday at 7pm at the library. Your voice matters.",
+    location: "Downtown",
+    tags: ["Community"],
+    boosted: false,
+    urgent: false,
+    reward: 0,
+    image: null,
+    likes: 33,
+    liked: false,
+    createdAt: Date.now() - 21600000, // 6h ago
+    comments: [
+      { id: "c9", userId: "bt",  text: "We'll be there. Great initiative!", createdAt: Date.now() - 20000000 },
+    ],
+  },
+];
+
+const CATEGORIES = [
+  { id: "all",       label: "All",         icon: "fa-home" },
+  { id: "urgent",    label: "Urgent",      icon: "fa-exclamation-triangle", urgent: true },
+  { id: "lost",      label: "Lost & Found",icon: "fa-paw" },
+  { id: "services",  label: "Services",    icon: "fa-tools" },
+  { id: "events",    label: "Events",      icon: "fa-calendar-alt" },
+  { id: "questions", label: "Questions",   icon: "fa-question-circle" },
+  { id: "news",      label: "News",        icon: "fa-newspaper" },
+];
+
+const ROLE_BADGES = {
+  official:     { label: "Official",     icon: "fa-check-circle",   cls: "badge-official" },
+  moderator:    { label: "Moderator",    icon: "fa-gavel",          cls: "badge-moderator" },
+  verified_pro: { label: "Verified Pro", icon: "fa-shield-alt",     cls: "badge-verified" },
+  member:       { label: "",             icon: "",                  cls: "" },
+};
+
+const NEIGHBORHOODS = [
+  "Your Neighborhood", "Maplewood", "Oakwood", "Riverside",
+  "Hillcrest", "Downtown", "Cedar Hills", "Sunset Park", "Brookside", "Eastgate",
+];

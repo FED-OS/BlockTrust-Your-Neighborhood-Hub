@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0">
+  <meta name="theme-color" content="#2e7d32" id="metaTheme">
+  <meta name="description" content="BlockTrust — a free-speech neighborhood community platform. Lost & found pets with reward escrow, verified local pros, community news & events. No censorship, no algorithms.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="BlockTrust">
+  <meta property="og:title" content="BlockTrust — Your Neighborhood, Uncensored">
+  <meta property="og:description" content="A free-speech neighborhood community platform. Lost & found pets with reward escrow, verified local pros, community news & events.">
+  <meta property="og:type" content="website">
+  <title>BlockTrust — Your Neighborhood, Uncensored</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/logo-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/logo-192.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <style>
+/* __STYLES__ */
+  </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+  <div id="toast-container" aria-live="polite" role="status"></div>
+
+  <!-- ===== Header ===== -->
+  <header class="header">
+    <div class="brand"><i class="fas fa-shield-halved"></i><span>BlockTrust</span></div>
+    <div class="search">
+      <i class="fas fa-search"></i>
+      <input type="search" id="searchInput" placeholder="Search posts, neighbors, tags…" aria-label="Search">
+    </div>
+    <button class="icon-btn" id="themeBtn" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+  </header>
+
+  <main class="app">
+
+    <!-- ===== HOME TAB ===== -->
+    <section id="homeTab" class="tab active">
+      <div class="cat-bar" id="catBar" role="tablist" aria-label="Categories"></div>
+      <div class="sort-bar" id="sortBar"></div>
+
+      <details class="freespeech" open>
+        <summary><i class="fas fa-comment-dots"></i> Free Speech, Real Community
+          <i class="fas fa-chevron-right chev"></i>
+        </summary>
+        <div class="body">
+          BlockTrust is a neighborhood platform built on trust and free expression. We don't censor lawful speech, we don't use manipulative algorithms, and we don't sell your data. The only content removed is illegal material, targeted harassment, and spam. Speak freely, connect locally, build real community.
+        </div>
+      </details>
+
+      <div class="welcome">
+        <h2>Welcome back, neighbor 👋</h2>
+        <p>See what's happening around you. Post updates, find lost pets, hire verified pros, and connect with your community — no algorithm, no censorship.</p>
+        <div class="stat-row">
+          <div class="stat"><div class="num" id="statNeighbors">2,847</div><div class="lbl">Neighbors</div></div>
+          <div class="stat"><div class="num" id="statPosts">12.4k</div><div class="lbl">Posts</div></div>
+          <div class="stat"><div class="num" id="statPros">186</div><div class="lbl">Verified Pros</div></div>
+        </div>
+      </div>
+
+      <div class="features">
+        <button class="feature-card" data-action="nav-lost">
+          <div class="ico amber"><i class="fas fa-paw"></i></div>
+          <h3>Lost & Found Pets</h3><p>Reward escrow keeps everyone honest</p>
+        </button>
+        <button class="feature-card" data-action="nav-pros">
+          <div class="ico blue"><i class="fas fa-shield-alt"></i></div>
+          <h3>Verified Pros</h3><p>Background-checked local services</p>
+        </button>
+        <button class="feature-card" data-action="nav-events">
+          <div class="ico green"><i class="fas fa-calendar-alt"></i></div>
+          <h3>Events</h3><p>Block parties, meetings, meetups</p>
+        </button>
+        <button class="feature-card" data-action="nav-premium">
+          <div class="ico red"><i class="fas fa-crown"></i></div>
+          <h3>Premium</h3><p>Boost posts & unlock pro tools</p>
+        </button>
+      </div>
+
+      <div class="section-h"><i class="fas fa-stream" style="color:var(--brand)"></i> Feed <span class="sub" id="feedCount"></span></div>
+      <div id="feed"></div>
+      <div class="spacer-lg"></div>
+    </section>
+
+    <!-- ===== ALERTS TAB ===== -->
+    <section id="alertsTab" class="tab">
+      <div id="alertsContent"></div>
+      <div class="spacer-lg"></div>
+    </section>
+
+    <!-- ===== PROFILE TAB ===== -->
+    <section id="profileTab" class="tab">
+      <div id="profileContent"></div>
+      <div class="spacer-lg"></div>
+    </section>
+
+    <!-- ===== PREMIUM TAB ===== -->
+    <section id="premiumTab" class="tab">
+      <div id="premiumContent"></div>
+      <div class="spacer-lg"></div>
+    </section>
+
+  </main>
+
+  <!-- ===== Bottom Nav ===== -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-tab="home" aria-label="Home"><i class="fas fa-house"></i><span>Home</span></button>
+    <button class="nav-item" data-tab="alerts" aria-label="Alerts"><i class="fas fa-bell"></i><span>Alerts</span><span class="badge-dot" id="alertBadge"></span></button>
+    <button class="nav-item post-btn" data-tab="post" aria-label="New post"><i class="fas fa-plus"></i></button>
+    <button class="nav-item" data-tab="premium" aria-label="Premium"><i class="fas fa-crown"></i><span>Premium</span></button>
+    <button class="nav-item" data-tab="profile" aria-label="Profile"><i class="fas fa-user"></i><span>Profile</span></button>
+  </nav>
+
+  <!-- ===== Scroll to top FAB ===== -->
+  <button class="fab-top" id="fabTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- ===== Post Composer Modal ===== -->
+  <div class="modal-overlay" id="postModal" role="dialog" aria-modal="true" aria-label="Create post">
+    <div class="modal composer">
+      <div class="m-handle"></div>
+      <div class="m-head">
+        <h2><i class="fas fa-pen-to-square" style="color:var(--brand)"></i> New Post</h2>
+        <button class="m-close" aria-label="Close"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="postForm" onsubmit="return false">
+        <label class="field-label" style="font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:6px;display:block">Category</label>
+        <div class="cat-grid" id="catGrid"></div>
+
+        <div class="field">
+          <label for="titleInput">Title <span class="muted">(optional)</span></label>
+          <input type="text" id="titleInput" placeholder="Give your post a headline…" maxlength="120">
+        </div>
+
+        <div class="field">
+          <label for="postText">What's happening in your neighborhood?</label>
+          <textarea id="postText" placeholder="Share an update, ask for help, report lost pet…" maxlength="1000" rows="4"></textarea>
+          <div class="char-count" id="charCount">0 / 1000</div>
+        </div>
+
+        <div class="img-upload" id="imgUpload">
+          <div id="imgPreview"></div>
+          <i class="fas fa-image"></i>
+          <p>Tap to add a photo</p>
+          <input type="file" id="imgInput" accept="image/*" hidden>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label for="locInput">Location</label>
+            <input type="text" id="locInput" placeholder="Neighborhood / street" maxlength="60">
+          </div>
+          <div class="field">
+            <label for="tagsInput">Tags</label>
+            <input type="text" id="tagsInput" placeholder="lost, dog, maplewood" maxlength="80">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="rewardInput">Reward ($) <span class="muted">— for lost pets / tasks</span></label>
+          <input type="number" id="rewardInput" min="0" max="9999" value="0" step="1">
+        </div>
+
+        <div class="toggle-row">
+          <div class="tr-info">
+            <div class="tr-title"><i class="fas fa-rocket" style="color:var(--accent)"></i> Boost this post</div>
+            <div class="tr-desc">Premium feature — pin to top of feed</div>
+          </div>
+          <label class="switch"><input type="checkbox" id="boostToggle"><span class="slider"></span></label>
+        </div>
+
+        <button type="button" class="btn-primary" id="submitPost"><i class="fas fa-paper-plane"></i> Publish Post</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== Post Detail Modal ===== -->
+  <div class="modal-overlay" id="detailModal" role="dialog" aria-modal="true" aria-label="Post detail">
+    <div class="modal detail-modal">
+      <div class="m-handle"></div>
+      <div class="m-head">
+        <h2><i class="fas fa-comments" style="color:var(--brand)"></i> Post</h2>
+        <button class="m-close" aria-label="Close"><i class="fas fa-times"></i></button>
+      </div>
+      <div id="detailContent"></div>
+    </div>
+  </div>
+
+  <script>
+/* __DATA__ */
+/* __STORE__ */
+/* __UTIL__ */
+/* __RENDER__ */
+/* __UI__ */
+  </script>
+</body>
+</html>

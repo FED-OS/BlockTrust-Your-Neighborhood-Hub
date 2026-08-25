@@ -1,0 +1,10 @@
+127.0.0.1 - - [24/Aug/2026 21:40:15] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [24/Aug/2026 21:40:20] "GET /index.html HTTP/1.1" 304 -
+127.0.0.1 - - [24/Aug/2026 21:40:26] code 404, message File not found
+127.0.0.1 - - [24/Aug/2026 21:40:26] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [24/Aug/2026 21:41:30] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [24/Aug/2026 21:44:14] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [24/Aug/2026 21:44:14] "GET /README.md HTTP/1.1" 200 -
+127.0.0.1 - - [24/Aug/2026 21:44:14] "GET /screenshots/clean-translation.png HTTP/1.1" 200 -
+127.0.0.1 - - [24/Aug/2026 21:44:14] "GET /screenshots/uncensored-proof.png HTTP/1.1" 200 -
+127.0.0.1 - - [24/Aug/2026 22:04:30] "GET /assets/social-preview.png HTTP/1.1" 200 -

@@ -1,0 +1,12 @@
+---FOOTER---
+HOW IT WORKS //
+---DICTS MENTIONED---
+9 bilingual dictionaries
+---TITLE/VERSION---
+---YEAR---
+2026
+---ENGINE EXPOSE---
+2://  UNCENSORED TRANSLATOR — ENGINE
+132:window.TRANSLATOR = { translate, LANGS };
+---LANGS---
+const LANGS = ["en", "zh", "hi", "es", "fr", "ar", "bn", "pt", "ru", "ur"]

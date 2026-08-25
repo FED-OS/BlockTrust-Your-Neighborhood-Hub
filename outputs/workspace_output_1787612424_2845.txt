@@ -1,0 +1,7 @@
+127.0.0.1 - - [24/Aug/2026 23:00:39] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [24/Aug/2026 23:00:44] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [24/Aug/2026 23:00:44] "GET /manifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [24/Aug/2026 23:00:50] code 404, message File not found
+127.0.0.1 - - [24/Aug/2026 23:00:50] "GET /assets/logo-192.png HTTP/1.1" 404 -
+127.0.0.1 - - [24/Aug/2026 23:00:50] code 404, message File not found
+127.0.0.1 - - [24/Aug/2026 23:00:50] "GET /assets/logo-192.png HTTP/1.1" 404 -

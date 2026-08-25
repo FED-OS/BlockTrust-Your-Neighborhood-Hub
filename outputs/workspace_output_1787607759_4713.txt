@@ -1,0 +1,36 @@
+---LANG_META CONTENT---
+  const LANG_META = [
+    { code: "en", name: "English",   tag: "english"   },
+    { code: "zh", name: "Mandarin",  tag: "mandarin"   },
+    { code: "hi", name: "Hindi",     tag: "hindi"      },
+    { code: "es", name: "Spanish",   tag: "spanish"    },
+    { code: "fr", name: "French",    tag: "french"     },
+    { code: "ar", name: "Arabic",    tag: "arabic"     },
+    { code: "bn", name: "Bengali",   tag: "bengali"    },
+    { code: "pt", name: "Portuguese",tag: "portuguese" },
+    { code: "ru", name: "Russian",   tag: "russian"    },
+    { code: "ur", name: "Urdu",      tag: "urdu"       },
+  ];
+  const byCode = {};
+  LANG_META.forEach(m => byCode[m.code] = m);
+---CHECK git---
+no git repo
+---HOW index.html built---
+0
+(0 = markers replaced, i.e. already assembled)
+---HEAD of index.html---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNCENSORED TRANSLATOR // RAW SIGNAL</title>
+<style>
+/* =============================================================
+   UNCENSORED TRANSLATOR — "raw signal / wire transmission" UI
+   ============================================================= */
+
+:root {
+  --bg: #05080a;
+  --bg-panel: #0a0f12;
+  --bg-deep: #020405;

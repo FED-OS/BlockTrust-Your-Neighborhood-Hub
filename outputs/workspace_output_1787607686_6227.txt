@@ -1,0 +1,35 @@
+total 1756
+drwxr-xr-x 2 root root   4096 Aug 24 21:40 .
+drwxr-xr-x 8 user user   4096 Aug 24 21:41 ..
+-rw-r--r-- 1 root root   1748 Aug 24 21:40 .last_elements.json
+-rw-r--r-- 1 root root     36 Aug 24 21:40 .last_screenshot
+-rw-r--r-- 1 root root      2 Aug 24 21:40 .step_counter
+-rw-r--r-- 1 root root  93241 Aug 24 12:45 step_000.png
+-rw-r--r-- 1 root root  95250 Aug 24 12:45 step_001.png
+-rw-r--r-- 1 root root  98653 Aug 24 12:46 step_002.png
+-rw-r--r-- 1 root root  96143 Aug 24 12:46 step_003.png
+-rw-r--r-- 1 root root  95624 Aug 24 12:46 step_004.png
+-rw-r--r-- 1 root root  96801 Aug 24 12:46 step_005.png
+-rw-r--r-- 1 root root  97398 Aug 24 12:46 step_006.png
+-rw-r--r-- 1 root root  96019 Aug 24 12:46 step_007.png
+-rw-r--r-- 1 root root  27164 Aug 24 21:38 step_008.png
+-rw-r--r-- 1 root root  27164 Aug 24 21:38 step_009.png
+-rw-r--r-- 1 root root  27164 Aug 24 21:38 step_010.png
+-rw-r--r-- 1 root root  27164 Aug 24 21:38 step_011.png
+-rw-r--r-- 1 root root  27164 Aug 24 21:38 step_012.png
+-rw-r--r-- 1 root root  27164 Aug 24 21:38 step_013.png
+-rw-r--r-- 1 root root  27164 Aug 24 21:38 step_014.png
+-rw-r--r-- 1 root root  27164 Aug 24 21:38 step_015.png
+-rw-r--r-- 1 root root  27164 Aug 24 21:38 step_016.png
+-rw-r--r-- 1 root root  27164 Aug 24 21:39 step_017.png
+-rw-r--r-- 1 root root  27164 Aug 24 21:39 step_018.png
+-rw-r--r-- 1 root root  27164 Aug 24 21:39 step_019.png
+-rw-r--r-- 1 root root  93238 Aug 24 21:40 step_020.png
+-rw-r--r-- 1 root root 113032 Aug 24 21:40 step_021.png
+-rw-r--r-- 1 root root 111795 Aug 24 21:40 step_022.png
+-rw-r--r-- 1 root root 112680 Aug 24 21:40 step_023.png
+-rw-r--r-- 1 root root 103109 Aug 24 21:40 step_024.png
+-rw-r--r-- 1 root root 101892 Aug 24 21:40 step_025.png
+---
+-rw-r--r-- 1 root root 1109 Aug 24 12:46 /workspace/todo.md
+-rw-r--r-- 1 root root  428 Aug 24 21:38 /workspace/todo_community.md

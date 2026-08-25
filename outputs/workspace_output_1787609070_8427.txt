@@ -1,0 +1,54 @@
+===== ALL REQUESTED FILES =====
+-- Issue templates --
+total 20
+drwxr-xr-x 2 root root 4096 Aug 24 22:00 .
+drwxr-xr-x 4 root root 4096 Aug 24 22:01 ..
+-rw-r--r-- 1 root root 2378 Aug 24 22:00 bug_report.md
+-rw-r--r-- 1 root root  713 Aug 24 22:00 config.yml
+-rw-r--r-- 1 root root 2021 Aug 24 22:00 feature_request.md
+-- Discussion template --
+total 12
+drwxr-xr-x 2 root root 4096 Aug 24 22:01 .
+drwxr-xr-x 4 root root 4096 Aug 24 22:01 ..
+-rw-r--r-- 1 root root 1013 Aug 24 22:01 general.yml
+-- Root docs --
+-rw-r--r-- 1 root root  1281 Aug 24 22:02 .gitignore
+-rw-r--r-- 1 root root  4035 Aug 24 22:01 CHANGELOG.md
+-rw-r--r-- 1 root root  5585 Aug 24 21:42 CODE_OF_CONDUCT.md
+-rw-r--r-- 1 root root  9838 Aug 24 21:43 CONTRIBUTING.md
+-rw-r--r-- 1 root root  1091 Aug 24 21:42 LICENSE
+-rw-r--r-- 1 root root 15809 Aug 24 22:04 README.md
+-rw-r--r-- 1 root root  3762 Aug 24 21:42 SECURITY.md
+-rw-r--r-- 1 root root  4692 Aug 24 22:01 SUPPORT.md
+-rw-r--r-- 1 root root 10629 Aug 24 12:43 styles.css
+-rw-r--r-- 1 root root  8104 Aug 24 22:01 usage.md
+-- Wiki --
+total 40
+drwxr-xr-x  2 root root 4096 Aug 24 22:02 .
+drwxr-xr-x 13 user user 4096 Aug 24 22:03 ..
+-rw-r--r--  1 root root 4387 Aug 24 22:02 Adding-Dictionary-Entries.md
+-rw-r--r--  1 root root 7136 Aug 24 22:02 Architecture.md
+-rw-r--r--  1 root root 2250 Aug 24 22:02 Home.md
+-rw-r--r--  1 root root 5914 Aug 24 22:02 Language-Support.md
+-rw-r--r--  1 root root  541 Aug 24 22:02 _Sidebar.md
+-- Social preview --
+total 1488
+drwxr-xr-x  2 root root    4096 Aug 24 22:04 .
+drwxr-xr-x 13 user user    4096 Aug 24 22:03 ..
+-rw-r--r--  1 root root    3262 Aug 24 22:04 SOCIAL-PREVIEW.md
+-rw-r--r--  1 root root 1507645 Aug 24 22:03 social-preview.png
+
+===== BUILD + TESTS =====
+OK  assembled index.html  (109.1 KB)
+[en->zh] "bullshit"  =>  "胡说八道"
+[en->es] "the quick brown fox jumps over the lazy dog"  =>  "the quick brown fox jumps over the lazy perro"
+[en->es] "supercalifragilistic"  =>  "supercalifragilistic"
+
+===== README SOCIAL PREVIEW LINK =====
+37:- [Social Preview](#social-preview)
+397:[`assets/social-preview.png`](assets/social-preview.png) for link unfurls
+400:![Social preview](assets/social-preview.png)
+403:image…** → choose `assets/social-preview.png`.
+
+===== SOCIAL PREVIEW SERVES 200 =====
+social-preview.png: 200

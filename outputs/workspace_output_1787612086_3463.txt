@@ -1,0 +1,15 @@
+-rw-r--r-- 1 root root 17802 Aug 24 22:54 BlockTrust-main.zip
+BlockTrust-main.zip: Zip archive data, at least v1.0 to extract, compression method=store
+---UNZIP---
+  inflating: /workspace/BlockTrust-main/README.md  
+  inflating: /workspace/BlockTrust-main/blocktrust.js  
+  inflating: /workspace/BlockTrust-main/index.html  
+  inflating: /workspace/BlockTrust-main/manifest.json  
+  inflating: /workspace/BlockTrust-main/sw.js  
+---STRUCTURE---
+/workspace/BlockTrust-main/.gitignore
+/workspace/BlockTrust-main/blocktrust.js
+/workspace/BlockTrust-main/sw.js
+/workspace/BlockTrust-main/manifest.json
+/workspace/BlockTrust-main/index.html
+/workspace/BlockTrust-main/README.md

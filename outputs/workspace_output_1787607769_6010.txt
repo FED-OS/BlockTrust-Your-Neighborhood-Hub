@@ -1,0 +1,3 @@
+OK  assembled index.html  (109.1 KB)
+---DIFF CHECK---
+IDENTICAL — build reproduces existing index.html exactly

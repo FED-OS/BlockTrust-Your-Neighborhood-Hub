@@ -1,0 +1,64 @@
+=== data.js head ===
+// ============================================================
+// BLOCKTRUST — SEED DATA
+// Initial posts, neighborhoods, and sample users.
+// In a real deployment this would come from Supabase; here it
+// is the local fallback so the app works fully offline.
+// ============================================================
+
+const SEED_USERS = {
+  bt:   { id: "bt",   name: "BlockTrust Team", initials: "BT", role: "official",   neighborhood: "All Neighborhoods", verified: true },
+  jess: { id: "jess", name: "Jessica Morales", initials: "JM", role: "member",     neighborhood: "Maplewood",        verified: false },
+  mike: { id: "mike", name: "Mike Reynolds",   initials: "MR", role: "member",     neighborhood: "Oakwood",          verified: false },
+  rob:  { id: "rob",  name: "Robert Chen",     initials: "RC", role: "verified_pro", neighborhood: "Riverside",      verified: true },
+  laura:{ id: "laura",name: "Laura Nguyen",    initials: "LN", role: "member",     neighborhood: "Hillcrest",        verified: false },
+  jane: { id: "jane", name: "Jane Miller",     initials: "JM", role: "moderator",  neighborhood: "Downtown",         verified: true },
+};
+=== store.js head ===
+// ============================================================
+// BLOCKTRUST — STORE (state + localStorage persistence)
+// ============================================================
+// A tiny reactive store. State lives in memory; changes are
+// persisted to localStorage so posts/likes/comments/profile
+// survive refreshes. A simple pub/sub lets the UI re-render.
+
+const STORE_KEY = "blocktrust_v2";
+
+const Store = (() => {
+  let state = null;
+  const subs = new Set();
+
+  function defaultState() {
+    return {
+=== util.js head ===
+// ============================================================
+// BLOCKTRUST — UTILITIES
+// ============================================================
+
+const Util = {
+  // XSS-safe text escaping for any user content rendered into HTML
+  esc(str) {
+    if (str == null) return "";
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  },
+=== render.js head ===
+// ============================================================
+// BLOCKTRUST — RENDER
+// Converts store state into DOM. All user-generated content is
+// escaped via Util.esc / Util.escMultiline — never injected raw.
+// ============================================================
+
+const Render = {
+
+  // ---- Badge for a user role ----
+  badge(user) {
+    const r = ROLE_BADGES[user.role] || ROLE_BADGES.member;
+    if (!r.label) return "";
+    return `<span class="badge ${r.cls}"><i class="fas ${r.icon}"></i> ${r.label}</span>`;
+  },
+

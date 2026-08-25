@@ -1,0 +1,6 @@
+🔨 Building BlockTrust...
+
+✅ Built index.html — 91.8 KB, 2284 lines
+   Sources: data.js, store.js, util.js, render.js, ui.js, styles.css
+   Output:  index.html
+

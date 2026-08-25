@@ -1,0 +1,30 @@
+=== BROWSER STATE ===
+URL: http://localhost:8128/index.html
+Title: BlockTrust — Your Neighborhood, Uncensored
+Result: Navigated to http://localhost:8128/index.html (title: BlockTrust — Your Neighborhood, Uncensored, status: 200)
+Warning: Overlay/modal detected - consider using dismiss_overlay
+
+Interactive elements (23):
+  [0] input type="search"
+  [1] button
+  [2] button "Recent"
+  [3] button "Top"
+  [4] button "Urgent"
+  [5] button "Lost & Found PetsReward escrow keeps everyone honest"
+  [6] button "Verified ProsBackground-checked local services"
+  [7] button "EventsBlock parties, meetings, meetups"
+  [8] button "PremiumBoost posts & unlock pro tools"
+  [9] button "Home"
+  [10] button "Alerts"
+  [11] button
+  [12] button "Premium"
+  [13] button "Profile"
+  [14] button
+  [15] button
+  [16] input type="text"
+  [17] textarea
+  [19] input type="text"
+  [20] input type="text"
+  [21] input type="number"
+  [23] button type="button" "Publish Post"
+  [24] button
