@@ -1,67 +1,116 @@
-# =============================================================
-# Uncensored Translator — .gitignore
-# =============================================================
+# ============================================================
+# BLOCKTRUST – .gitignore
+# ============================================================
 
-# ---- Node ----
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-.npm
-.pnpm-store/
+# ============================================================
+# OS / System
+# ============================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
 
-# ---- Editor / IDE ----
+# ============================================================
+# IDE / Editor
+# ============================================================
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-.DS_Store
-Thumbs.db
-desktop.ini
+*.sublime-project
+*.sublime-workspace
+.ftpconfig
+.project
+.classpath
+.settings/
 
-# ---- OS junk ----
-*.tmp
-*.bak
+# ============================================================
+# Environment / Secrets
+# ============================================================
+.env
+.env.local
+.env.*.local
+*.local
+*.secret
+*.key
+*.pem
+
+# ============================================================
+# Logs
+# ============================================================
 *.log
-*.cache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
 
-# ---- Build artifacts ----
-# index.html IS committed (it is the shippable artifact), so do NOT ignore it.
-# Only ignore intermediate/scratch build outputs:
+# ============================================================
+# Dependencies
+# ============================================================
+node_modules/
+bower_components/
+jspm_packages/
+.pnp/
+.pnp.js
+
+# ============================================================
+# Build / Output
+# ============================================================
 dist/
-build_tmp/
-*.min.html
+build/
+out/
+*.min.js
+*.min.css
+*.bundle.js
 
-# ---- Test / coverage ----
+# ============================================================
+# Temp / Cache
+# ============================================================
+.cache/
+.tmp/
+.temp/
+tmp/
+temp/
+*.cache
+*.tmp
+*.temp
+
+# ============================================================
+# Coverage / Testing
+# ============================================================
 coverage/
 .nyc_output/
+*.lcov
 
-# ---- Local dev servers / runtime data ----
-*.pid
-.http.server.*
+# ============================================================
+# Package Manager
+# ============================================================
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+*.tgz
 
-# ---- Browser automation scratch (do not commit these) ----
-.browser_data/
-.screenshots/
-.last_screenshot
-.last_elements.json
-.step_counter
+# ============================================================
+# Deployment
+# ============================================================
+.vercel/
+.netlify/
+.parcel-cache/
+.sass-cache/
 
-# ---- Agent / workspace scratch ----
-.agent_hooks/
-.psiphon_data/
-summarized_conversations/
-todo*.md
-outputs/
-
-# ---- Env / secrets ----
-.env
-.env.*
-!.env.example
-
-# ---- Notes ----
-# IMPORTANT: index.html is the assembled, shippable file and MUST be committed.
-# The build (node build.js) is deterministic, but we commit the output so the
-# repo is usable without Node. Do not add `index.html` to this ignore list.
+# ============================================================
+# Misc
+# ============================================================
+*.bak
+*.backup
+*.old
+*.orig
+*.rej
+*.patch
+*.diff
