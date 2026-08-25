@@ -1,0 +1,46 @@
+# BlockTrust — Community & Governance Files TODO
+
+## .github/ templates
+- [ ] .github/DISCUSSION_WELCOME_README.md
+- [ ] .github/PULL_REQUEST_TEMPLATE.md
+- [ ] .github/ISSUE_TEMPLATE/bug_report.md
+- [ ] .github/ISSUE_TEMPLATE/feature_request.md
+- [ ] .github/ISSUE_TEMPLATE/custom.md
+- [ ] .github/ISSUE_TEMPLATE/config.yml
+
+## Agent / AI docs
+- [ ] CLAUDE.md
+- [ ] AGENTS.md
+
+## Project docs
+- [ ] ADR.md
+- [ ] ROADMAP.md
+- [ ] DEPLOYMENT.md
+- [ ] SUMMARY.md
+
+## Community meta
+- [ ] todo.md (public project todo)
+- [ ] COPYING.md
+- [ ] CITATIONS.md
+- [ ] GOVERNANCE.md
+- [ ] PULL_REQUEST_TEMPLATE.md
+- [ ] bug_report.md
+- [ ] feature_request.md
+- [ ] SUPPORT.md
+- [ ] CODE_OF_CONDUCT.md
+- [ ] CONTRIBUTING.md
+- [ ] usage.md
+- [ ] CHANGELOG.md
+
+## Misc
+- [ ] Social preview image + preview prompts doc
+- [ ] wiki/ (Home + pages)
+- [ ] discussion template text
+- [ ] SECURITY.md
+- [ ] LICENSE (MIT)
+- [ ] .gitignore (review)
+- [ ] styles.css
+
+## Verify & Deliver
+- [ ] Tree view check
+- [ ] Redeploy

@@ -1,0 +1,20 @@
+.fab:hover { transform: scale(1.08); }
+.fab:active { transform: scale(0.94); }
+.fab.pros { background: linear-gradient(135deg,#00838f,#0097a7); }
+.fab.prem { background: linear-gradient(135deg,#f5a623,#e6921a); color:#1a1e26; }
+@media (min-width: 760px) {
+    .fab-stack { right: calc(50% - 280px - 64px); }
+}
+
+/* Responsive */
+    .rules-grid { grid-template-columns: 1fr; }
+    .premium-benefits { grid-template-columns: 1fr; }
+    .pro-grid { grid-template-columns: 1fr; }
+    .welcome-banner .feature-grid { grid-template-columns: repeat(3,1fr); }
+    .logo span.full { display: none; }
+    .search-bar { max-width: none; }
+    .hood-switch .label { display: none; }
+}
+@media (min-width: 760px) {
+    .bottom-nav { max-width: 560px; left: 50%; transform: translateX(-50%); border-radius: var(--r-xl) var(--r-xl) 0 0; margin: 0 auto; border: 1px solid var(--border); border-bottom: none; }
+}

@@ -1,0 +1,2 @@
+-rw-r--r-- 1 root root 30335 Aug 25 00:35 /workspace/BlockTrust-upgraded.zip
+zipped

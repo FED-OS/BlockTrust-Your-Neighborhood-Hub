@@ -1,0 +1,120 @@
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .post-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .post-avatar.green { background: linear-gradient(135deg, #2e7d32, #43a047); }
+        .post-avatar.light { background: linear-gradient(135deg, #66bb6a, #43a047); }
+        .post-avatar.gold { background: linear-gradient(135deg, #b8860b, #8b6914); }
+        .post-avatar.orange { background: linear-gradient(135deg, #b85c00, #8a4500); }
+        .post-avatar.purple { background: linear-gradient(135deg, #5a2d7a, #3a1a4a); }
+        .post-avatar.teal { background: linear-gradient(135deg, #00695c, #004d40); }
+        .post-avatar.blue { background: linear-gradient(135deg, #1565c0, #0d47a1); }
+
+        .post-user {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .post-neighborhood {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .post-time {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        /* ========== BADGES – DISTINCT COLORS ========== */
+        .badge {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-left: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            text-transform: none;
+        }
+
+        .badge i {
+            font-size: 11px;
+        }
+
+        /* Premium – Gold */
+        .badge-premium {
+            background: var(--premium-gold-bg);
+            color: #8a6d00;
+            border: 1px solid var(--premium-gold);
+        }
+
+        /* Verified Pro – Green */
+        .badge-verified {
+            background: var(--verified-green-bg);
+            color: var(--verified-green);
+            border: 1px solid var(--verified-green);
+        }
+
+        /* Moderator – Purple */
+        .badge-moderator {
+            background: var(--moderator-purple-bg);
+            color: var(--moderator-purple);
+            border: 1px solid var(--moderator-purple);
+        }
+
+        /* Official – Blue */
+        .badge-official {
+            background: var(--official-blue-bg);
+            color: var(--official-blue);
+            border: 1px solid var(--official-blue);
+        }
+
+        /* Urgent – Red */
+        .badge-urgent {
+            background: var(--urgent-bg);
+            color: var(--urgent);
+            border: 1px solid var(--urgent);
+        }
+
+        /* Found – Green (same as verified but different context) */
+        .badge-found {
+            background: var(--found-bg);
+            color: var(--found);
+            border: 1px solid var(--found);
+        }
+
+        /* Boosted – Gold */
+        .badge-boosted {
+            background: var(--boosted-gold-bg);
+            color: #8a6d00;
+            border: 1px solid var(--boosted-gold);
+        }
+
+        /* Event Host – Orange/Coral */
+        .badge-event {
+            background: #fff3e0;
+            color: #e65100;
+            border: 1px solid #e65100;
+        }
+
+        .post-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);

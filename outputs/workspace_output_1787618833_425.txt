@@ -1,0 +1,17 @@
+=== FILE COUNT BY TYPE ===
+Markdown docs: 36
+Wiki pages: 9
+GitHub templates: 6
+App files: 9
+
+=== TOTAL SIZES ===
+2.1M	.
+
+=== KEY FILES WORD COUNTS ===
+README.md: 1030 words
+CONTRIBUTING.md: 1174 words
+GOVERNANCE.md: 1086 words
+ADR.md: 1639 words
+ROADMAP.md: 1056 words
+CODE_OF_CONDUCT.md: 833 words
+SECURITY.md: 755 words

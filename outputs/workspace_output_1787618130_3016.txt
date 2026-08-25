@@ -1,0 +1,17 @@
+9:  // ---------- Toasts ----------
+10:  const toastStack = $('#toastStack');
+11:  function toast(msg, type='success', icon) {
+12:    const t = document.createElement('div');
+13:    t.className = `toast ${type}`;
+15:    t.innerHTML = `<i class="fas ${ic} lead"></i><span>${msg}</span>`;
+16:    toastStack.appendChild(t);
+17:    setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 300); }, 2800);
+20:  // ---------- State ----------
+22:  function persist() { Store.save(); }
+--- verify all tabs reachable ---
+data-tab="alerts"
+data-tab="events"
+data-tab="home"
+data-tab="premium"
+data-tab="profile"
+data-tab="pros"

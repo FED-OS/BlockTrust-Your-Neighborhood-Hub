@@ -1,0 +1,48 @@
+{
+  "name": "BlockTrust",
+  "short_name": "BlockTrust",
+  "description": "Your Neighborhood Hub – connect, share, and support your community.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f6f8",
+  "theme_color": "#2e7d32",
+  "orientation": "portrait",
+  "categories": ["community", "social", "local", "neighborhood"],
+  "icons": [
+    {
+      "src": "assets/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Create a Post",
+      "short_name": "New Post",
+      "description": "Share something with your neighbors",
+      "url": "/?action=post",
+      "icons": [
+        {
+          "src": "assets/logo-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "View Alerts",
+      "short_name": "Alerts",
+      "description": "See urgent posts in your neighborhood",
+      "url": "/?tab=alerts",
+      "icons": [
+        {
+          "src": "assets/logo-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false
+}

@@ -1,0 +1,44 @@
+OK   .github/DISCUSSION_WELCOME_README.md
+OK   .github/PULL_REQUEST_TEMPLATE.md
+OK   .github/ISSUE_TEMPLATE/bug_report.md
+OK   .github/ISSUE_TEMPLATE/feature_request.md
+OK   .github/ISSUE_TEMPLATE/custom.md
+OK   CLAUDE.md
+OK   AGENTS.md
+OK   ADR.md
+OK   ROADMAP.md
+OK   DEPLOYMENT.md
+OK   SUMMARY.md
+OK   todo.md
+OK   COPYING.md
+OK   CITATIONS.md
+OK   GOVERNANCE.md
+OK   PULL_REQUEST_TEMPLATE.md
+OK   bug_report.md
+OK   feature_request.md
+OK   SUPPORT.md
+OK   CODE_OF_CONDUCT.md
+OK   README.md
+OK   CONTRIBUTING.md
+OK   usage.md
+OK   CHANGELOG.md
+OK   SECURITY.md
+OK   LICENSE
+OK   .gitignore
+OK   styles.css
+---WIKI---
+Architecture-Overview.md
+Component-Guide.md
+Data-Layer-Guide.md
+Deployment-Recipes.md
+Free-Speech-and-Moderation.md
+Getting-Started.md
+Glossary.md
+Home.md
+Theming-Guide.md
+---SOCIAL PREVIEW---
+-rw-r--r-- 1 root root 1788974 Aug 25 00:44 assets/social-preview.png
+---DISCUSSION TEMPLATE---
+-rw-r--r-- 1 root root 2881 Aug 25 00:42 DISCUSSION_TEMPLATE.md
+---PREVIEW PROMPTS---
+-rw-r--r-- 1 root root 3817 Aug 25 00:42 SOCIAL_PREVIEW.md

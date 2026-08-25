@@ -1,0 +1,7 @@
+-rw-r--r-- 1 root root 1767023 Aug 25 00:47 /workspace/BlockTrust-community-files.zip
+---FILES IN ZIP---
+     1283  2026-08-25 00:41   feature_request.md
+     8273  2026-08-25 00:46   README.md
+     6265  2026-08-25 00:39   SUMMARY.md
+---------                     -------
+  2061760                     55 files

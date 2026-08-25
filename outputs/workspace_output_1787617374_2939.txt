@@ -1,0 +1,390 @@
+                <div class="post-card" data-category="events">
+                    <div class="post-header">
+                        <div class="post-avatar teal">LN</div>
+                        <div>
+                            <div class="post-user">Laura Nguyen <span class="badge badge-event"><i class="fas fa-calendar-alt"></i> Event Host</span></div>
+                            <div class="post-neighborhood">📍 Hillcrest • 5 hours ago</div>
+                        </div>
+                        <span class="post-time">5h</span>
+                    </div>
+                    <div class="post-title">🎉 Hillcrest Block Party – This Saturday</div>
+                    <div class="post-content">
+                        Annual block party this Saturday, 4pm–9pm on Maple Street! 🎶 Live music, 🌭 BBQ, 🎨 kids activities. Everyone welcome.
+                    </div>
+                    <div class="post-tags">
+                        <span class="post-tag location"><i class="fas fa-map-marker-alt"></i> Hillcrest</span>
+                        <span class="post-tag">#BlockParty</span>
+                    </div>
+                    <div class="post-actions">
+                        <button><i class="fas fa-heart"></i> 42</button>
+                        <button><i class="fas fa-comment"></i> 15</button>
+                        <button><i class="fas fa-share-alt"></i> 6</button>
+                    </div>
+                </div>
+
+                <!-- ===== POST 6 – COMMUNITY NEWS (Moderator – Purple) ===== -->
+                <div class="post-card" data-category="news">
+                    <div class="post-header">
+                        <div class="post-avatar purple">JM</div>
+                        <div>
+                            <div class="post-user">Jane Miller <span class="badge badge-moderator"><i class="fas fa-gavel"></i> Moderator</span></div>
+                            <div class="post-neighborhood">📍 Downtown • 6 hours ago</div>
+                        </div>
+                        <span class="post-time">6h</span>
+                    </div>
+                    <div class="post-title">📰 New Community Center – Share Your Ideas</div>
+                    <div class="post-content">
+                        The city is planning a new community center on <span class="highlight">5th and Main</span>. Public meeting this Thursday at 7pm at the library. Your voice matters.
+                    </div>
+                    <div class="post-tags">
+                        <span class="post-tag location"><i class="fas fa-map-marker-alt"></i> Downtown</span>
+                        <span class="post-tag">#Community</span>
+                    </div>
+                    <div class="post-actions">
+                        <button><i class="fas fa-heart"></i> 33</button>
+                        <button><i class="fas fa-comment"></i> 19</button>
+                        <button><i class="fas fa-share-alt"></i> 5</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== PREMIUM TAB ========== -->
+    <div id="premiumTab" class="tab-content">
+        <div class="container">
+            <div class="premium-container">
+
+                <!-- ===== HERO ===== -->
+                <div class="premium-hero">
+                    <div class="crown">👑</div>
+                    <h2>Go <span>Premium</span></h2>
+                    <div class="price">$9.99 <span>/ month</span></div>
+                    <p>Unlock all features, support your neighborhood, and get the most out of BlockTrust.</p>
+                    <button class="btn-premium" onclick="alert('💳 Premium subscription – $9.99/month. Coming soon.')">
+                        <i class="fas fa-crown"></i> Subscribe Now
+                    </button>
+                </div>
+
+                <!-- ===== BENEFITS ===== -->
+                <div class="premium-benefits">
+                    <div class="premium-benefit">
+                        <i class="fas fa-infinity"></i>
+                        <h4>Unlimited Alerts</h4>
+                        <p>Post as many alerts as you need – no limits.</p>
+                    </div>
+                    <div class="premium-benefit">
+                        <i class="fas fa-bolt"></i>
+                        <h4>Boosted Posts</h4>
+                        <p>Your posts appear at the top of the feed.</p>
+                    </div>
+                    <div class="premium-benefit">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Verified Badge</h4>
+                        <p>Stand out as a trusted community member.</p>
+                    </div>
+                    <div class="premium-benefit">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <h4>Reward Escrow</h4>
+                        <p>Offer rewards for lost pets – we handle the rest.</p>
+                    </div>
+                    <div class="premium-benefit">
+                        <i class="fas fa-headset"></i>
+                        <h4>Priority Support</h4>
+                        <p>Get help faster when you need it.</p>
+                    </div>
+                    <div class="premium-benefit">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>No Per-Post Fees</h4>
+                        <p>Post as much as you want – no extra charges.</p>
+                    </div>
+                </div>
+
+                <!-- ===== FEATURES LIST ===== -->
+                <div class="premium-features-list">
+                    <h3>✨ Everything Included</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Unlimited lost & found pet alerts</li>
+                        <li><i class="fas fa-check-circle"></i> Unlimited service posts</li>
+                        <li><i class="fas fa-check-circle"></i> Boosted posts (priority placement)</li>
+                        <li><i class="fas fa-check-circle"></i> Verified community badge</li>
+                        <li><i class="fas fa-check-circle"></i> Reward escrow with 10% fee</li>
+                        <li><i class="fas fa-check-circle"></i> No per-post fees</li>
+                        <li><i class="fas fa-check-circle"></i> Priority customer support</li>
+                        <li><i class="fas fa-check-circle"></i> Early access to new features</li>
+                    </ul>
+                </div>
+
+                <!-- ===== FAQ ===== -->
+                <div class="premium-faq">
+                    <h3>❓ Frequently Asked Questions</h3>
+                    <div class="premium-faq-item">
+                        <strong>How do I cancel my subscription?</strong>
+                        <p>You can cancel anytime from your profile settings. No commitment.</p>
+                    </div>
+                    <div class="premium-faq-item">
+                        <strong>Is there a free trial?</strong>
+                        <p>Yes – 7 days free trial for new members. Cancel anytime.</p>
+                    </div>
+                    <div class="premium-faq-item">
+                        <strong>What is the reward escrow fee?</strong>
+                        <p>We take a 10% fee on rewards collected through the platform. Premium members get the same low fee.</p>
+                    </div>
+                    <div class="premium-faq-item">
+                        <strong>Can I boost posts without premium?</strong>
+                        <p>Yes – you can boost individual posts for $4.99 each. Premium members get unlimited boosted posts.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== BOTTOM NAV ========== -->
+    <nav class="bottom-nav" id="bottomNav">
+        <a href="#" class="active" data-tab="home"><i class="fas fa-home"></i> Home</a>
+        <a href="#" class="premium-nav" data-tab="premium"><i class="fas fa-crown"></i> Premium</a>
+        <a href="#" class="post-btn" id="openPostModal"><i class="fas fa-plus"></i> Post</a>
+        <a href="#" data-tab="alerts"><i class="fas fa-bell"></i> Alerts</a>
+        <a href="#" data-tab="profile"><i class="fas fa-user"></i> Profile</a>
+    </nav>
+
+    <!-- ========== POST MODAL ========== -->
+    <div class="modal-overlay" id="postModal">
+        <div class="modal">
+            <h2>📝 Create a Post</h2>
+            <p>Share something with your neighbors. What's happening in your block?</p>
+            <textarea id="postContent" placeholder="Write your post here..."></textarea>
+
+            <div class="boost-option">
+                <input type="checkbox" id="boostPost" />
+                <label for="boostPost"><i class="fas fa-bolt" style="color:var(--gold);"></i> Boost this post</label>
+                <span class="boost-price">+$4.99</span>
+            </div>
+
+            <div class="reward-option">
+                <label>🏷️ Reward amount (optional)</label>
+                <input type="number" id="rewardAmount" placeholder="0" min="0" step="1" />
+                <span style="font-size:12px; color:var(--text-muted); margin-left:auto;">(10% platform fee)</span>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-secondary" id="closePostModal">Cancel</button>
+                <button class="btn-gold" id="submitPost"><i class="fas fa-bolt"></i> Post & Boost</button>
+                <button class="btn-primary" id="submitPostFree">Post</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // ============================================================
+        // FREE SPEECH COLLAPSIBLE
+        // ============================================================
+        const toggle = document.getElementById('freeSpeechToggle');
+        const content = document.getElementById('freeSpeechContent');
+        const arrow = document.getElementById('freeSpeechArrow');
+
+        if (localStorage.getItem('freeSpeechOpen') === 'true') {
+            content.classList.add('open');
+            arrow.classList.add('open');
+        }
+
+        toggle.addEventListener('click', function() {
+            content.classList.toggle('open');
+            arrow.classList.toggle('open');
+            localStorage.setItem('freeSpeechOpen', content.classList.contains('open'));
+        });
+
+        // ============================================================
+        // TAB SWITCHING
+        // ============================================================
+        const tabs = {
+            home: document.getElementById('homeTab'),
+            premium: document.getElementById('premiumTab')
+        };
+        const navLinks = document.querySelectorAll('.bottom-nav a[data-tab]');
+
+        function switchTab(tabId) {
+            Object.values(tabs).forEach(tab => tab.classList.remove('active'));
+            if (tabs[tabId]) tabs[tabId].classList.add('active');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.tab === tabId) link.classList.add('active');
+            });
+            const categoryBar = document.querySelector('.category-bar');
+            if (tabId === 'premium') {
+                categoryBar.style.display = 'none';
+            } else {
+                categoryBar.style.display = 'block';
+            }
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const tabId = this.dataset.tab;
+                if (tabId === 'post') return;
+                if (tabId === 'alerts' || tabId === 'profile') {
+                    alert('📌 ' + tabId.charAt(0).toUpperCase() + tabId.slice(1) + ' section coming soon.');
+                    return;
+                }
+                switchTab(tabId);
+            });
+        });
+
+        // ============================================================
+        // CATEGORY FILTER
+        // ============================================================
+        const pills = document.querySelectorAll('.pill');
+        const posts = document.querySelectorAll('.post-card');
+
+        pills.forEach(pill => {
+            pill.addEventListener('click', function() {
+                pills.forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                const category = this.dataset.category;
+                posts.forEach(post => {
+                    const postCategories = post.dataset.category.split(' ');
+                    if (category === 'all' || postCategories.includes(category)) {
+                        post.style.display = 'block';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // ============================================================
+        // SEARCH
+        // ============================================================
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            posts.forEach(post => {
+                const text = post.textContent.toLowerCase();
+                if (query === '' || text.includes(query)) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+            if (query.length > 0) {
+                pills.forEach(p => p.classList.remove('active'));
+                document.querySelector('.pill[data-category="all"]').classList.add('active');
+            }
+        });
+
+        // ============================================================
+        // POST MODAL
+        // ============================================================
+        const modal = document.getElementById('postModal');
+        const openModalBtn = document.getElementById('openPostModal');
+        const closeModalBtn = document.getElementById('closePostModal');
+        const submitPostBtn = document.getElementById('submitPost');
+        const submitPostFree = document.getElementById('submitPostFree');
+        const postContent = document.getElementById('postContent');
+        const boostCheck = document.getElementById('boostPost');
+        const rewardInput = document.getElementById('rewardAmount');
+
+        function openModal() {
+            modal.classList.add('active');
+            postContent.value = '';
+            boostCheck.checked = false;
+            rewardInput.value = '';
+            postContent.focus();
+        }
+
+        openModalBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal();
+        });
+
+        closeModalBtn.addEventListener('click', function() {
+            modal.classList.remove('active');
+        });
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                modal.classList.remove('active');
+            }
+        });
+
+        function createPost(isBoosted, reward) {
+            const content = postContent.value.trim();
+            if (content === '') {
+                alert('Please write something before posting.');
+                return false;
+            }
+
+            const feed = document.getElementById('feedContainer');
+            const newPost = document.createElement('div');
+            newPost.className = 'post-card' + (isBoosted ? ' boosted' : '');
+            newPost.setAttribute('data-category', 'all');
+            newPost.innerHTML = `
+                <div class="post-header">
+                    <div class="post-avatar" style="background:linear-gradient(135deg,#2e7d32,#43a047);">BT</div>
+                    <div>
+                        <div class="post-user">You ${isBoosted ? '<span class="badge badge-boosted"><i class="fas fa-bolt"></i> Boosted</span>' : ''}</div>
+                        <div class="post-neighborhood">📍 Your Neighborhood • just now</div>
+                    </div>
+                    <span class="post-time">Now</span>
+                </div>
+                <div class="post-content">${content.replace(/\n/g, '<br>')}</div>
+                <div class="post-tags">
+                    <span class="post-tag location"><i class="fas fa-map-marker-alt"></i> Your Block</span>
+                    ${reward > 0 ? `<span class="post-tag reward"><i class="fas fa-dollar-sign"></i> $${reward} Reward</span>` : ''}
+                    ${isBoosted ? `<span class="post-tag boosted-tag"><i class="fas fa-bolt"></i> Boosted</span>` : ''}
+                </div>
+                <div class="post-actions">
+                    <button><i class="fas fa-heart"></i> 0</button>
+                    <button><i class="fas fa-comment"></i> 0</button>
+                    <button><i class="fas fa-share-alt"></i> 0</button>
+                    ${reward > 0 ? `<button class="claim-btn" onclick="alert('💰 Claim reward – $${reward}. Platform fee (10%) = $${Math.round(reward * 0.1)}. You receive $${Math.round(reward * 0.9)}.')"><i class="fas fa-hand-holding-usd"></i> Claim Reward</button>` : ''}
+                </div>
+            `;
+
+            feed.insertBefore(newPost, feed.firstChild);
+            modal.classList.remove('active');
+            postContent.value = '';
+            boostCheck.checked = false;
+            rewardInput.value = '';
+            return true;
+        }
+
+        submitPostBtn.addEventListener('click', function() {
+            const reward = parseInt(rewardInput.value) || 0;
+            const isBoosted = boostCheck.checked;
+            if (createPost(isBoosted, reward)) {
+                const fee = Math.round(reward * 0.1);
+                let msg = '✅ Post published!';
+                if (isBoosted) msg += ' Boosted ($4.99).';
+                if (reward > 0) msg += ' Reward: $' + reward + ' – platform fee: $' + fee + '.';
+                alert(msg);
+            }
+        });
+
+        submitPostFree.addEventListener('click', function() {
+            const reward = parseInt(rewardInput.value) || 0;
+            const isBoosted = boostCheck.checked;
+            if (createPost(isBoosted, reward)) {
+                const fee = Math.round(reward * 0.1);
+                let msg = '✅ Post published!';
+                if (isBoosted) msg += ' Boosted ($4.99).';
+                if (reward > 0) msg += ' Reward: $' + reward + ' – platform fee: $' + fee + '.';
+                alert(msg);
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+            }
+        });
+
+        console.log('🏡 BlockTrust loaded successfully.');
+    </script>
+
+</body>
+</html>

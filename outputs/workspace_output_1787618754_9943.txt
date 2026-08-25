@@ -1,0 +1,96 @@
+<div align="center">
+
+# 🏡 BlockTrust — Your Neighborhood Hub
+
+**A modern, free-speech community platform for neighbors to connect, share alerts, find trusted local pros, and support each other.**
+
+</div>
+
+---
+
+## ✨ What's New (300% Upgrade)
+
+BlockTrust was rebuilt from a static single-file demo into a polished, fully-interactive, installable PWA with real data persistence.
+
+### 🎨 Design
+- Modern **design system** with CSS variables, glassmorphism app bar, refined typography & micro-interactions
+- **Dark / Light theme** toggle with persistence
+- Smooth animations, skeleton/empty states, toast notifications (no more `alert()`s)
+- Fully **responsive**, mobile-first with floating action buttons
+
+### ⚙️ Working Features (no more "coming soon")
+- **Interactive feed** — like, comment (threaded), save/bookmark, share, and delete your own posts
+- **Create posts** with category picker, title, emoji image, reward, and boost toggle
+- **localStorage persistence** — your posts, likes, saves, theme, profile & RSVPs survive reloads
+- **Alerts / Notifications** center with unread state and "mark all read"
+- **Verified Local Pros** directory with ratings, reviews, badges, and message/call actions
+- **Community Events** calendar with RSVP and attendee counts
+- **Profile** page with editable name/bio, stats, My Posts / Saved / My Events panes
+- **Premium** subscription flow with badge unlock
+- **Neighborhood switcher** (8 neighborhoods)
+- **Search** with live filtering across categories
+
+### 📦 Rich Demo Data
+- **12 seed posts** across all categories (urgent, lost/found pets, pros, events, news, recommendations)
+- **6 verified pros**, **5 events**, **6 notifications** — realistic content out of the box
+
+### 📱 PWA
+- Installable, offline-ready service worker, app manifest with SVG icon
+
+---
+
+## 🗂️ Project Structure
+
+```
+BlockTrust-main/
+├── index.html          # App shell & all sections
+├── css/theme.css       # Full design system + dark mode
+├── js/
+│   ├── data.js         # Seed posts, pros, events, notifications, categories
+│   ├── storage.js      # localStorage state layer
+│   └── app.js          # All app logic (rendering, interactions, tabs)
+├── assets/logo.svg     # App icon
+├── manifest.json       # PWA manifest
+├── sw.js               # Service worker (offline cache)
+└── README.md
+```
+
+---
+
+## 🚀 Run Locally
+
+```bash
+# Any static server works:
+python3 -m http.server 8000
+# then open http://localhost:8000
+```
+
+Or just open `index.html` directly in a browser.
+
+## 🌐 Deploy
+
+1. Fork / push to a GitHub repo
+2. Enable **GitHub Pages** (Settings → Pages → `main` branch / root)
+3. Visit `https://yourusername.github.io/blocktrust`
+
+> The app is fully client-side — no backend required to run the demo. To wire up real auth/database, plug in Supabase in `js/storage.js`.
+
+---
+
+## 🛠️ Tech Stack
+- **Frontend:** Vanilla HTML, CSS, JavaScript (no framework, no build step)
+- **Persistence:** localStorage
+- **PWA:** Web App Manifest + Service Worker
+- **Icons:** Font Awesome 6, emoji
+- **Fonts:** Inter (Google Fonts)
+
+## 💡 Roadmap Ideas
+- Supabase backend (auth, real-time posts, storage)
+- Stripe payments for premium & boost
+- Map view for alerts
+- Push notifications
+- Direct messaging between neighbors
+
+---
+
+<div align="center">Built with ❤️ for neighborhoods.</div>

@@ -1,0 +1,24 @@
+index 404
+css 404
+data 404
+total 72
+drwxr-xr-x 5 root root  4096 Aug 25 00:23 .
+drwxr-xr-x 8 user user  4096 Aug 25 00:27 ..
+-rw-r--r-- 1 root root  2395 Aug 22 11:35 .gitignore
+-rw-r--r-- 1 root root  1418 Aug 22 11:35 README.md
+drwxr-xr-x 2 root root  4096 Aug 25 00:26 assets
+-rw-r--r-- 1 root root 13632 Aug 22 11:35 blocktrust.js
+drwxr-xr-x 2 root root  4096 Aug 25 00:24 css
+-rw-r--r-- 1 root root 18572 Aug 25 00:26 index.html
+drwxr-xr-x 2 root root  4096 Aug 25 00:26 js
+---
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/usr/local/lib/python3.11/http/server.py", line 1328, in <module>
+    test(
+  File "/usr/local/lib/python3.11/http/server.py", line 1275, in test
+    with ServerClass(addr, HandlerClass) as httpd:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/socketserver.py", line 456, in __init__
+    self.server_bind()

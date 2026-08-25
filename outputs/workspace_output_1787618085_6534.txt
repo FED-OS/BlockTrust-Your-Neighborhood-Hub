@@ -1,0 +1,30 @@
+total 72
+drwxr-xr-x 5 root root  4096 Aug 25 00:23 .
+drwxr-xr-x 8 user user  4096 Aug 25 00:27 ..
+-rw-r--r-- 1 root root  2395 Aug 22 11:35 .gitignore
+-rw-r--r-- 1 root root  3415 Aug 25 00:34 README.md
+drwxr-xr-x 2 root root  4096 Aug 25 00:26 assets
+-rw-r--r-- 1 root root 13632 Aug 22 11:35 blocktrust.js
+drwxr-xr-x 2 root root  4096 Aug 25 00:24 css
+-rw-r--r-- 1 root root 18962 Aug 25 00:32 index.html
+drwxr-xr-x 2 root root  4096 Aug 25 00:26 js
+-rw-r--r-- 1 root root  1177 Aug 25 00:26 manifest.json
+-rw-r--r-- 1 root root   982 Aug 25 00:26 sw.js
+---
+assets:
+logo.svg
+
+css:
+theme.css
+
+js:
+app.js
+data.js
+storage.js
+--- line counts ---
+  335 index.html
+  896 css/theme.css
+  572 js/app.js
+  186 js/data.js
+   55 js/storage.js
+ 2044 total

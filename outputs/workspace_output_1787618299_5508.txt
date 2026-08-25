@@ -1,0 +1,34 @@
+./.github/DISCUSSION_WELCOME_README.md
+./.github/ISSUE_TEMPLATE/bug_report.md
+./.github/ISSUE_TEMPLATE/config.yml
+./.github/ISSUE_TEMPLATE/custom.md
+./.github/ISSUE_TEMPLATE/feature_request.md
+./.github/PULL_REQUEST_TEMPLATE.md
+./.gitignore
+./AGENTS.md
+./CLAUDE.md
+./README.md
+./assets/logo.svg
+./css/theme.css
+./index.html
+./js/app.js
+./js/data.js
+./js/storage.js
+./manifest.json
+./sw.js
+---ROOT---
+total 76
+drwxr-xr-x 7 root root  4096 Aug 25 00:37 .
+drwxr-xr-x 9 user user  4096 Aug 25 00:38 ..
+drwxr-xr-x 3 root root  4096 Aug 25 00:37 .github
+-rw-r--r-- 1 root root  2395 Aug 22 11:35 .gitignore
+-rw-r--r-- 1 root root  4373 Aug 25 00:37 AGENTS.md
+-rw-r--r-- 1 root root  3993 Aug 25 00:37 CLAUDE.md
+-rw-r--r-- 1 root root  3415 Aug 25 00:34 README.md
+drwxr-xr-x 2 root root  4096 Aug 25 00:26 assets
+drwxr-xr-x 2 root root  4096 Aug 25 00:24 css
+-rw-r--r-- 1 root root 18962 Aug 25 00:32 index.html
+drwxr-xr-x 2 root root  4096 Aug 25 00:26 js
+-rw-r--r-- 1 root root  1177 Aug 25 00:26 manifest.json
+-rw-r--r-- 1 root root   982 Aug 25 00:26 sw.js
+drwxr-xr-x 2 root root  4096 Aug 25 00:36 wiki

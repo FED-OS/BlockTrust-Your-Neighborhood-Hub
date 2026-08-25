@@ -1,0 +1,7 @@
+LISTEN 0      2048         0.0.0.0:8080       0.0.0.0:*    users:(("python",pid=756,fd=3),("python",pid=666,fd=3))                     
+---
+5500 free
+6001 free
+7000 free
+7777 free
+9001 free

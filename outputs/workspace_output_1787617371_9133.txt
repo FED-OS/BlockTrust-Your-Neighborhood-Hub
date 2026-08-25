@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>BlockTrust – Your Neighborhood Hub</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ========== RESET & VARIABLES ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-body: #e8ecf0;
+            --bg-card: #f4f6f8;
+            --bg-input: #e2e6ea;
+            --bg-hover: #d5d9df;
+            --text-primary: #1a1e26;
+            --text-secondary: #3a404a;
+            --text-muted: #6a7280;
+            --border: #c8ced6;
+            --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 4px 24px rgba(0, 0, 0, 0.12);
+            --accent: #2e7d32;
+            --accent-hover: #1b5e20;
+            --accent-light: #dce8dc;
+            --accent-gradient: linear-gradient(135deg, #2e7d32, #43a047);
+            --urgent: #b71c1c;
+            --urgent-bg: #f5e6e6;
+            --found: #2e7d32;
+            --found-bg: #e0ece0;
+            --card-border: #c8ced6;
+            --gold: #f5a623;
+            --gold-light: #fcf0d8;
+            --verified-green: #2e7d32;
+            --verified-green-bg: #e8f5e9;
+            --moderator-purple: #6a1b9a;
+            --moderator-purple-bg: #f3e5f5;
+            --official-blue: #1565c0;
+            --official-blue-bg: #e3f2fd;
+            --premium-gold: #f5a623;
+            --premium-gold-bg: #fcf0d8;
+            --boosted-gold: #f5a623;
+            --boosted-gold-bg: #fcf0d8;
+            --transition: 0.2s;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 80px;

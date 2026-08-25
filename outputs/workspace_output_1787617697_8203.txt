@@ -1,0 +1,50 @@
+=== BROWSER STATE ===
+URL: http://localhost:7777/index.html
+Title: BlockTrust — Your Neighborhood Hub
+Result: Navigated to http://localhost:7777/index.html (title: BlockTrust — Your Neighborhood Hub, status: 200)
+Warning: Overlay/modal detected - consider using dismiss_overlay
+
+Interactive elements (73):
+  [0] a "BlockTrust" -> #
+  [1] input type="text"
+  [2] button "Maplewood"
+  [3] button
+  [4] button "All"
+  [5] button "Urgent"
+  [6] button "Lost Pets"
+  [7] button "Found"
+  [8] button "Local Pros"
+  [9] button "Events"
+  [10] button "News"
+  [11] button "Recommend"
+  [12] button
+  [13] button "203"
+  [14] button "2"
+  [15] button
+  [16] button
+  [19] button
+  [20] button "96"
+  [21] button "2"
+  [22] button
+  [23] button
+  [24] button "Claim"
+  [27] button
+  [28] button "184"
+  [29] button "2"
+  [30] button
+  [31] button
+  [34] button
+  [35] button "54"
+  [36] button "1"
+  [37] button
+  [38] button
+  [41] button
+  [42] button "71"
+  [43] button "2"
+  [44] button
+  [45] button
+  [48] button
+  [49] button "142"
+  [50] button "2"
+  [51] button
+  [52] button

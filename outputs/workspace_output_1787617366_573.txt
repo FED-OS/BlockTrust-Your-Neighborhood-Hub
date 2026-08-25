@@ -1,0 +1,139 @@
+=== SW.JS ===
+const CACHE_NAME = 'blocktrust-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/assets/logo-192.png',
+  '/assets/logo-512.png'
+];
+
+// Install
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(urlsToCache))
+  );
+});
+
+// Fetch
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => response || fetch(event.request))
+  );
+});
+
+// Activate – remove old caches
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.filter(name => name !== CACHE_NAME)
+          .map(name => caches.delete(name))
+      );
+    })
+  );
+});
+
+=== BLOCKTRUST.JS (first 100 lines) ===
+// ============================================================
+// BLOCKTRUST – COMPLETE FRONTEND SCRIPT
+// ============================================================
+// ============================================================
+// FREE SPEECH COLLAPSIBLE
+// ============================================================
+const toggle = document.getElementById('freeSpeechToggle');
+const content = document.getElementById('freeSpeechContent');
+const arrow = document.getElementById('freeSpeechArrow');
+
+if (localStorage.getItem('freeSpeechOpen') === 'true') {
+    content.classList.add('open');
+    arrow.classList.add('open');
+}
+
+if (toggle) {
+    toggle.addEventListener('click', function() {
+        content.classList.toggle('open');
+        arrow.classList.toggle('open');
+        localStorage.setItem('freeSpeechOpen', content.classList.contains('open'));
+    });
+}
+
+// ============================================================
+// TAB SWITCHING (Home / Premium)
+// ============================================================
+const tabs = {
+    home: document.getElementById('homeTab'),
+    premium: document.getElementById('premiumTab')
+};
+
+const navLinks = document.querySelectorAll('.bottom-nav a[data-tab]');
+
+function switchTab(tabId) {
+    Object.values(tabs).forEach(tab => {
+        if (tab) tab.classList.remove('active');
+    });
+    if (tabs[tabId]) tabs[tabId].classList.add('active');
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.dataset.tab === tabId) {
+            link.classList.add('active');
+        }
+    });
+    const categoryBar = document.querySelector('.category-bar');
+    if (categoryBar) {
+        if (tabId === 'premium') {
+            categoryBar.style.display = 'none';
+        } else {
+            categoryBar.style.display = 'block';
+        }
+    }
+}
+
+navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const tabId = this.dataset.tab;
+        if (tabId === 'post') return;
+        if (tabId === 'alerts' || tabId === 'profile') {
+            alert('📌 ' + tabId.charAt(0).toUpperCase() + tabId.slice(1) + ' section coming soon.');
+            return;
+        }
+        switchTab(tabId);
+    });
+});
+
+// ============================================================
+// CATEGORY FILTER
+// ============================================================
+const pills = document.querySelectorAll('.pill');
+const posts = document.querySelectorAll('.post-card');
+
+pills.forEach(pill => {
+    pill.addEventListener('click', function() {
+        pills.forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+
+        const category = this.dataset.category;
+
+        posts.forEach(post => {
+            const postCategories = post.dataset.category.split(' ');
+            if (category === 'all' || postCategories.includes(category)) {
+                post.style.display = 'block';
+            } else {
+                post.style.display = 'none';
+            }
+        });
+    });
+});
+
+// ============================================================
+// SEARCH
+// ============================================================
+const searchInput = document.getElementById('searchInput');
+
+if (searchInput) {
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        posts.forEach(post => {

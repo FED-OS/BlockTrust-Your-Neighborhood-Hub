@@ -1,0 +1,85 @@
+  362 blocktrust.js
+ 1771 index.html
+ 2133 total
+
+=== INDEX HTML STRUCTURE ===
+1168:    <header class="header">
+1169:        <div class="container">
+1170:            <div class="header-content">
+1176:                <div class="search-bar">
+1178:                    <input type="text" placeholder="Search your neighborhood..." id="searchInput" />
+1181:                <div class="header-actions">
+1183:                    <div class="avatar">BT</div>
+1190:    <div class="container">
+1191:        <div class="category-bar">
+1192:            <div class="category-pills" id="categoryPills">
+1205:    <div id="homeTab" class="tab-content active">
+1206:        <div class="container">
+1207:            <div class="feed" id="feedContainer">
+1210:                <div class="free-speech-wrapper">
+1211:                    <div class="free-speech-toggle" id="freeSpeechToggle">
+1212:                        <div class="left">
+1216:                        <i class="fas fa-chevron-down arrow" id="freeSpeechArrow"></i>
+1218:                    <div class="free-speech-content" id="freeSpeechContent">
+1225:                        <div class="rules-grid">
+1226:                            <div class="rule-item"><i class="fas fa-check-circle"></i> Share local news and events</div>
+1227:                            <div class="rule-item"><i class="fas fa-check-circle"></i> Post lost & found pets</div>
+1228:                            <div class="rule-item"><i class="fas fa-check-circle"></i> Recommend local businesses</div>
+1229:                            <div class="rule-item"><i class="fas fa-check-circle"></i> Discuss community issues</div>
+1230:                            <div class="rule-item"><i class="fas fa-check-circle"></i> Share honest opinions</div>
+1231:                            <div class="rule-item"><i class="fas fa-check-circle"></i> Report neighborhood concerns</div>
+1232:                            <div class="rule-item"><i class="fas fa-times-circle no"></i> ❌ Hate speech or harassment</div>
+1233:                            <div class="rule-item"><i class="fas fa-times-circle no"></i> ❌ Illegal activity</div>
+1234:                            <div class="rule-item"><i class="fas fa-times-circle no"></i> ❌ Spam or scams</div>
+1235:                            <div class="rule-item"><i class="fas fa-times-circle no"></i> ❌ Doxxing (sharing personal info)</div>
+1237:                        <div class="divider"></div>
+1238:                        <div class="appeal-note">
+1249:                <div class="welcome-banner">
+1252:                    <div class="feature-grid">
+1253:                        <div class="feature-item"><i class="fas fa-paw"></i> Lost & Found Pets</div>
+1254:                        <div class="feature-item"><i class="fas fa-tools"></i> Find Local Pros</div>
+1255:                        <div class="feature-item"><i class="fas fa-calendar-alt"></i> Community Events</div>
+1256:                        <div class="feature-item"><i class="fas fa-question-circle"></i> Ask Neighbors</div>
+1257:                        <div class="feature-item"><i class="fas fa-newspaper"></i> Neighborhood News</div>
+1258:                        <div class="feature-item"><i class="fas fa-shield-alt"></i> Trusted & Verified</div>
+1263:                <div class="post-card" data-category="news">
+1264:                    <div class="post-header">
+1265:                        <div class="post-avatar blue">BT</div>
+1267:                            <div class="post-user">BlockTrust Team <span class="badge badge-official"><i class="fas fa-check-circle"></i> Official</span></div>
+1268:                            <div class="post-neighborhood">📍 All Neighborhoods • 1 hour ago</div>
+1272:                    <div class="post-title">🏡 Welcome to BlockTrust – Your Trusted Neighborhood Hub</div>
+1273:                    <div class="post-content">
+1281:                    <div class="post-tags">
+1287:                    <div class="post-actions">
+1295:                <div class="post-card urgent-post boosted" data-category="urgent lost">
+1296:                    <div class="post-header">
+1297:                        <div class="post-avatar orange">JM</div>
+1299:                            <div class="post-user">Jessica Morales <span class="badge badge-urgent"><i class="fas fa-exclamation-triangle"></i> Urgent</span></div>
+1300:                            <div class="post-neighborhood">📍 Maplewood • 3 hours ago</div>
+1304:                    <div class="post-title">🐾 Lost: Golden Retriever – "Bailey"</div>
+1305:                    <div class="post-content">
+1310:                    <div class="post-tags">
+1316:                    <div class="post-actions">
+1327:                <div class="post-card found-post" data-category="found">
+1328:                    <div class="post-header">
+1329:                        <div class="post-avatar light">MR</div>
+1331:                            <div class="post-user">Mike Reynolds <span class="badge badge-found"><i class="fas fa-check-circle"></i> Found!</span></div>
+1332:                            <div class="post-neighborhood">📍 Oakwood • 1 hour ago</div>
+1336:                    <div class="post-title">🐕 Found: Small Brown Terrier Mix</div>
+1337:                    <div class="post-content">
+1340:                    <div class="post-tags">
+1344:                    <div class="post-actions">
+1352:                <div class="post-card" data-category="services">
+1353:                    <div class="post-header">
+1354:                        <div class="post-avatar gold">RC</div>
+1356:                            <div class="post-user">Robert Chen <span class="badge badge-verified"><i class="fas fa-shield-alt"></i> Verified Pro</span></div>
+1357:                            <div class="post-neighborhood">📍 Riverside • 4 hours ago</div>
+1361:                    <div class="post-title">🛠️ Local Handyman – Trusted by Neighbors</div>
+1362:                    <div class="post-content">
+1369:                    <div class="post-tags">
+1374:                    <div class="post-actions">
+1382:                <div class="post-card" data-category="events">
+1383:                    <div class="post-header">
+1384:                        <div class="post-avatar teal">LN</div>
+1386:                            <div class="post-user">Laura Nguyen <span class="badge badge-event"><i class="fas fa-calendar-alt"></i> Event Host</span></div>
+1387:                            <div class="post-neighborhood">📍 Hillcrest • 5 hours ago</div>

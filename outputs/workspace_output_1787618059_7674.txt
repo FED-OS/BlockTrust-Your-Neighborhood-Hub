@@ -1,0 +1,8 @@
+step_047.png
+step_047.png
+=== END ===
+tab-premium
+=== END ===
+                 Premium Member
+=== END ===
+Result: Text from #profilePremium: Premium Member

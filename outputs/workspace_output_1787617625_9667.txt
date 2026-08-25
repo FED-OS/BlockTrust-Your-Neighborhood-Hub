@@ -1,0 +1,17 @@
+=== BROWSER STATE ===
+URL: http://localhost:8080/index.html
+Title: 
+Result: Navigated to http://localhost:8080/index.html (title: , status: 404)
+
+Accessibility tree:
+Page text: {"detail":"Not Found"}
+
+Errors: Console Errors (2):
+   • Failed to load resource: the server responded with a status of 404 (Not Found) (http://localhost:8080/index.html:0)
+   • Failed to load resource: the server responded with a status of 404 (Not Found) (http://localhost:8080/favicon.ico:0)
+Network Errors (1):
+   • GET http://localhost:8080/index.html → 404 Not Found
+
+Screenshot: /workspace/.screenshots/step_000.png
+Use see-image to view: /workspace/.screenshots/step_000.png
+=== END ===
