@@ -1,0 +1,58 @@
+{
+  "name": "BlockTrust — Your Block, Your Voice",
+  "short_name": "BlockTrust",
+  "description": "A modern, free-speech neighborhood social platform for neighbors to connect, share alerts, find trusted local pros, and support each other.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f6f8",
+  "theme_color": "#16a34a",
+  "orientation": "portrait",
+  "categories": ["community", "social", "local", "neighborhood"],
+  "icons": [
+    {
+      "src": "assets/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/social-preview.png",
+      "sizes": "1536x1024",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "BlockTrust neighborhood social app"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Create a Post",
+      "short_name": "New Post",
+      "description": "Share something with your neighbors",
+      "url": "./?action=post",
+      "icons": [
+        {
+          "src": "assets/logo.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "View Alerts",
+      "short_name": "Alerts",
+      "description": "See urgent posts in your neighborhood",
+      "url": "./?tab=alerts",
+      "icons": [
+        {
+          "src": "assets/logo.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false
+}
